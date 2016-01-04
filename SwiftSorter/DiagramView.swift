@@ -15,6 +15,7 @@ class DiagramView: UIView
     private var viewsOrdinanceDict : [Int : UIView] = [Int : UIView]()
     
     private var maxElement : Int!
+    private var selectedElementAtIndex : Int?
     
     private var elementWidth : CGFloat = 0
     private var elementInterval : CGFloat = 0
@@ -57,6 +58,9 @@ class DiagramView: UIView
     {
         super.init(frame: frame)
         self.backgroundColor = UIColor.whiteColor()
+        
+//        self.layer.borderWidth = 1.0
+//        self.layer.borderColor = UIColor.blackColor().CGColor
     }
     
     private func processArray()
@@ -76,28 +80,24 @@ class DiagramView: UIView
     
     private func drawDiagram()
     {
-        clearDiagram()
-        
         for index in 0..<self.array.count
         {
-            let elementView = viewForElementAtIndex(index)
-            
-            self.contentView.addSubview(elementView)
-            
-            self.viewsOrdinanceDict[index] = elementView
+            drawElementAtIndex(index)
         }
     }
     
-    private func clearDiagram()
+    private func drawElementAtIndex(index: Int)
     {
-        for subview in self.contentView.subviews
+        var view = viewsOrdinanceDict[index]
+        
+        if view == nil
         {
-            subview.removeFromSuperview()
+            view = UIView()
+            self.contentView.addSubview(view!)
+            self.viewsOrdinanceDict[index] = view!
+            deselectElementAtIndex(index)
         }
-    }
-    
-    private func viewForElementAtIndex(index: Int) -> UIView
-    {
+        
         let element = _array[index]
         
         let elementHeight = CGFloat(element) * (self.contentView.bounds.size.height / CGFloat(maxElement))
@@ -109,14 +109,7 @@ class DiagramView: UIView
                                     size: CGSize(width:elementWidth, height:elementHeight))
         
         
-        let view = UIView(frame: elementFrame)
-        
-//        let component = CGFloat(maxElement) * CGFloat(element) / 255.0
-//        
-//        let color = UIColor(red: 1.0, green:1-component, blue:0, alpha:1.0)
-        view.backgroundColor = UIColor.blueColor()
-        
-        return view
+        view!.frame = elementFrame
     }
     
     func swapElements(fromIndex fromIndex : Int, toIndex : Int)
@@ -139,10 +132,28 @@ class DiagramView: UIView
         self.viewsOrdinanceDict[toIndex] = firstView
     }
     
-    func highlightElementAtIndex(index : Int)
+    func selectElementAtIndex(index : Int)
     {
+        deselectElementAtIndex(selectedElementAtIndex)
+        
         let viewAtIndex = self.viewsOrdinanceDict[index]
         viewAtIndex?.backgroundColor = UIColor.redColor()
+        
+        selectedElementAtIndex = index
+    }
+    
+    func deselectElementAtIndex(index : Int?)
+    {
+//        if let currentlyHighlightedViewIndex =  index
+//        {
+//            let currentlyHighlightedView = self.viewsOrdinanceDict[currentlyHighlightedViewIndex]
+//            currentlyHighlightedView?.backgroundColor = UIColor.blueColor()
+//        }
+        
+        for view : UIView in self.contentView.subviews
+        {
+            view.backgroundColor = UIColor.blueColor()
+        }
     }
     
     override func layoutSubviews() {
@@ -158,8 +169,9 @@ class DiagramView: UIView
         processArray()
         prepareConstants()
         
-        clearDiagram()
-        drawDiagram()
+//        UIView.animateWithDuration(0.5, animations :{ () -> Void in
+            self.drawDiagram()
+//        })
     }
     
     required init(coder aDecoder: NSCoder) {

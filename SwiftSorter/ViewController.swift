@@ -24,69 +24,87 @@ extension Array {
 
 class ViewController: UIViewController
 {
+    var sorter : SelectionSorter?
+    
     var _diagramView : DiagramView! = nil
-    var diagramView : DiagramView
+    var diagramView : DiagramView?
     {
         get
         {
             if _diagramView == nil
             {
                 _diagramView = DiagramView(frame: CGRectInset(self.view.bounds, 10.0, 10.0))
+                
+                self.view.addSubview(_diagramView)
             }
             
             return _diagramView
         }
+        
+        set(newDiagram)
+        {
+            if newDiagram == nil
+            {
+                _diagramView?.removeFromSuperview()
+                
+                _diagramView = newDiagram
+            }
+        }
     }
     
-    var  srcarr : [Int] = []
+    var  _sourceArray : [Int] = []
     
     var sourceArray : [Int]!
     {
         get
         {
-            if srcarr.isEmpty
+            if _sourceArray.isEmpty
             {
                 self.fillArray()
             }
             
-            return srcarr
+            return _sourceArray
         }
     }
 
     func fillArray()
     {
-        srcarr = []
+        _sourceArray = []
         
         for element in 1...25
         {
-            srcarr.append(element)
+            _sourceArray.append(element)
         }
         
-        srcarr.shuffle()
+        _sourceArray.shuffle()
     }
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.yellowColor()
+        self.view.backgroundColor = UIColor.whiteColor()
         self.title = "Глагне"
         self.navigationController?.navigationBar.translucent = false
+        
+        
+        let uibb = UIBarButtonItem(barButtonSystemItem: .Play, target: self, action: "restartSorting:")
+        self.navigationItem.rightBarButtonItem = uibb
 
         fillArray()
         
-        self.diagramView.array = srcarr
-        self.view.addSubview(diagramView)
+        self.diagramView?.array = self.sourceArray
     }
     
     override func viewWillLayoutSubviews()
     {
         super.viewWillLayoutSubviews()
         
-        let s = UIApplication.sharedApplication().statusBarOrientation
+        let statusBarOrientation = UIApplication.sharedApplication().statusBarOrientation
         
-        if UIInterfaceOrientationIsLandscape(s)
+        if UIInterfaceOrientationIsLandscape(statusBarOrientation)
         {
-            self.diagramView.frame = CGRectInset(self.view.bounds, 10.0, 10.0)
+            self.diagramView!.frame = CGRectInset(self.view.bounds, 10.0, 10.0)
         }
         else
         {
@@ -95,32 +113,40 @@ class ViewController: UIViewController
                            width: self.view.bounds.width - 20,
                           height: self.view.bounds.width)
             
-            self.diagramView.frame = frame
-//            self.diagramView.center = self.view.center
+            self.diagramView!.frame = frame
         }
-        
+
+        self.diagramView!.layoutIfNeeded()
+    }
+
+//    override func viewDidAppear(animated: Bool)
+//    {
+//        super.viewDidAppear(animated)
 //
-        self.diagramView.layoutIfNeeded()
+//        startSorting()
+//    }
+    
+    func startSorting()
+    {
+        var arrayCopy = self.sourceArray
+        
+        self.sorter = SelectionSorter()
+        sorter?.diagramView = self.diagramView
+        sorter?.array = arrayCopy;
+        
+        sorter?.sort()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    func restartSorting(sender : UIBarButtonItem)
+    {
+        sender.enabled = false
         
-//        self.diagramView.swapElements(fromIndex: 1, toIndex: 20)
-//        self.diagramView.swapElements(fromIndex: 2, toIndex: 24)
-//        self.diagramView.swapElements(fromIndex: 3, toIndex: 23)
-//        self.diagramView.swapElements(fromIndex: 4, toIndex: 22)
-//        self.diagramView.swapElements(fromIndex: 5, toIndex: 21)
+        self.sorter?.stop()
+        self.diagramView = nil
         
-        self.diagramView.highlightElementAtIndex(10)
+        startSorting()
         
+        sender.enabled = true
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 
