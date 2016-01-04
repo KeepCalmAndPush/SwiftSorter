@@ -9,10 +9,9 @@
 /* Begin PBXBuildFile section */
 		77AEF1161C396F8900009F41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEF1151C396F8900009F41 /* AppDelegate.swift */; };
 		77AEF1181C396F8900009F41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEF1171C396F8900009F41 /* ViewController.swift */; };
-		77AEF11B1C396F8900009F41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77AEF1191C396F8900009F41 /* Main.storyboard */; };
 		77AEF11D1C396F8900009F41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77AEF11C1C396F8900009F41 /* Assets.xcassets */; };
-		77AEF1201C396F8900009F41 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77AEF11E1C396F8900009F41 /* LaunchScreen.storyboard */; };
 		77AEF12B1C396F8900009F41 /* SwiftSorterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEF12A1C396F8900009F41 /* SwiftSorterUITests.swift */; };
+		77AEF1371C39851E00009F41 /* DiagramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEF1361C39851E00009F41 /* DiagramView.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +28,12 @@
 		77AEF1121C396F8900009F41 /* SwiftSorter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftSorter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77AEF1151C396F8900009F41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77AEF1171C396F8900009F41 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		77AEF11A1C396F8900009F41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		77AEF11C1C396F8900009F41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		77AEF11F1C396F8900009F41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		77AEF1211C396F8900009F41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77AEF1261C396F8900009F41 /* SwiftSorterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftSorterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77AEF12A1C396F8900009F41 /* SwiftSorterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSorterUITests.swift; sourceTree = "<group>"; };
 		77AEF12C1C396F8900009F41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77AEF1361C39851E00009F41 /* DiagramView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagramView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,11 +75,10 @@
 		77AEF1141C396F8900009F41 /* SwiftSorter */ = {
 			isa = PBXGroup;
 			children = (
+				77AEF1351C39850200009F41 /* Views */,
 				77AEF1151C396F8900009F41 /* AppDelegate.swift */,
 				77AEF1171C396F8900009F41 /* ViewController.swift */,
-				77AEF1191C396F8900009F41 /* Main.storyboard */,
 				77AEF11C1C396F8900009F41 /* Assets.xcassets */,
-				77AEF11E1C396F8900009F41 /* LaunchScreen.storyboard */,
 				77AEF1211C396F8900009F41 /* Info.plist */,
 			);
 			path = SwiftSorter;
@@ -94,6 +91,14 @@
 				77AEF12C1C396F8900009F41 /* Info.plist */,
 			);
 			path = SwiftSorterUITests;
+			sourceTree = "<group>";
+		};
+		77AEF1351C39850200009F41 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				77AEF1361C39851E00009F41 /* DiagramView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,9 +181,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77AEF1201C396F8900009F41 /* LaunchScreen.storyboard in Resources */,
 				77AEF11D1C396F8900009F41 /* Assets.xcassets in Resources */,
-				77AEF11B1C396F8900009F41 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77AEF1371C39851E00009F41 /* DiagramView.swift in Sources */,
 				77AEF1181C396F8900009F41 /* ViewController.swift in Sources */,
 				77AEF1161C396F8900009F41 /* AppDelegate.swift in Sources */,
 			);
@@ -218,25 +222,6 @@
 			targetProxy = 77AEF1271C396F8900009F41 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		77AEF1191C396F8900009F41 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				77AEF11A1C396F8900009F41 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		77AEF11E1C396F8900009F41 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				77AEF11F1C396F8900009F41 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		77AEF12D1C396F8900009F41 /* Debug */ = {
@@ -324,6 +309,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SwiftSorter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.andreysolovyov.lol.SwiftSorter;
@@ -335,6 +321,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SwiftSorter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.andreysolovyov.lol.SwiftSorter;
