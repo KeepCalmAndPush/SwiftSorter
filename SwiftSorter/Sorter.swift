@@ -45,4 +45,15 @@ class Sorter: NSObject
         diagramView = nil
         self.array = nil
     }
+    
+    func swapElementsAtIndices(index1 index1: Int, index2 : Int)
+    {
+        let currentElement = self.array![index1]
+        let currentMinElement = self.array![index2]
+        
+        self.array![index1] = currentMinElement
+        self.array![index2] = currentElement
+        
+        self.diagramView?.swapElements(fromIndex: index1, toIndex: index2)
+    }
 }

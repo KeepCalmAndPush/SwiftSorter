@@ -22,9 +22,9 @@ extension Array {
     }
 }
 
-class ViewController: UIViewController
+class SortingDiagramViewController: UIViewController
 {
-    var sorter : SelectionSorter?
+    var sorter : Sorter?
     
     var _diagramView : DiagramView! = nil
     var diagramView : DiagramView?
@@ -33,7 +33,7 @@ class ViewController: UIViewController
         {
             if _diagramView == nil
             {
-                _diagramView = DiagramView(frame: CGRectInset(self.view.bounds, 10.0, 10.0))
+                _diagramView = DiagramView(frame:self.view.bounds)
                 
                 self.view.addSubview(_diagramView)
             }
@@ -104,13 +104,13 @@ class ViewController: UIViewController
         
         if UIInterfaceOrientationIsLandscape(statusBarOrientation)
         {
-            self.diagramView!.frame = CGRectInset(self.view.bounds, 10.0, 10.0)
+            self.diagramView!.frame = self.view.bounds
         }
         else
         {
             let frame = CGRect(x: 10,
-                               y: (self.view.bounds.height - (self.view.bounds.width - 20)) / 2,
-                           width: self.view.bounds.width - 20,
+                               y: (self.view.bounds.height - (self.view.bounds.width - 0)) / 2,
+                           width: self.view.bounds.width - 0,
                           height: self.view.bounds.width)
             
             self.diagramView!.frame = frame
@@ -119,18 +119,11 @@ class ViewController: UIViewController
         self.diagramView!.layoutIfNeeded()
     }
 
-//    override func viewDidAppear(animated: Bool)
-//    {
-//        super.viewDidAppear(animated)
-//
-//        startSorting()
-//    }
-    
     func startSorting()
     {
         var arrayCopy = self.sourceArray
         
-        self.sorter = SelectionSorter()
+        self.sorter = InsertionSorter()
         sorter?.diagramView = self.diagramView
         sorter?.array = arrayCopy;
         

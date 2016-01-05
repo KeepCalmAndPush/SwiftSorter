@@ -8,6 +8,14 @@
 
 import UIKit
 
+let defaultElementColor = UIColor.blueColor()
+let selectionColor = UIColor.yellowColor()
+let successfulComparisonColor = UIColor.greenColor()
+let failedComparisonColor = UIColor.redColor()
+let diagramBackgroundColor = UIColor.lightGrayColor()
+
+let runLoopTimeInterval = 0.2
+
 class DiagramView: UIView
 {
     private var _array : [Int] = []
@@ -57,10 +65,7 @@ class DiagramView: UIView
     override init(frame: CGRect)
     {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.whiteColor()
-        
-//        self.layer.borderWidth = 1.0
-//        self.layer.borderColor = UIColor.blackColor().CGColor
+        self.backgroundColor = diagramBackgroundColor
     }
     
     private func processArray()
@@ -123,7 +128,7 @@ class DiagramView: UIView
         swappedFirstViewFrame?.origin.x = (secondView?.frame.origin)!.x
         swappedSecondViewFrame?.origin.x = (firstView?.frame.origin)!.x
         
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
+        UIView.animateWithDuration(0.9 * runLoopTimeInterval, animations: { () -> Void in
             firstView?.frame = swappedFirstViewFrame!
             secondView?.frame = swappedSecondViewFrame!
         });
@@ -137,9 +142,37 @@ class DiagramView: UIView
         deselectElementAtIndex(selectedElementAtIndex)
         
         let viewAtIndex = self.viewsOrdinanceDict[index]
-        viewAtIndex?.backgroundColor = UIColor.redColor()
+        viewAtIndex?.backgroundColor = selectionColor
         
         selectedElementAtIndex = index
+        
+        NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: runLoopTimeInterval))
+    }
+    
+    func highlightComparisonSucceededForElementAtIndex(elementIndex : Int, comparedToElementAtIndex : Int)
+    {
+        clearSelection()
+        
+        let elementView = self.viewsOrdinanceDict[elementIndex]
+        let comparisonElementView = self.viewsOrdinanceDict[comparedToElementAtIndex]
+        
+        elementView?.backgroundColor = selectionColor
+        comparisonElementView?.backgroundColor = successfulComparisonColor
+        
+        NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: runLoopTimeInterval))
+    }
+    
+    func highlightComparisonFailedForElementAtIndex(elementIndex : Int, comparedToElementAtIndex : Int)
+    {
+        clearSelection()
+        
+        let elementView = self.viewsOrdinanceDict[elementIndex]
+        let comparisonElementView = self.viewsOrdinanceDict[comparedToElementAtIndex]
+        
+        elementView?.backgroundColor = selectionColor
+        comparisonElementView?.backgroundColor = failedComparisonColor
+        
+        NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: runLoopTimeInterval))
     }
     
     func deselectElementAtIndex(index : Int?)
@@ -150,9 +183,14 @@ class DiagramView: UIView
 //            currentlyHighlightedView?.backgroundColor = UIColor.blueColor()
 //        }
         
+        clearSelection()
+    }
+    
+    func clearSelection()
+    {
         for view : UIView in self.contentView.subviews
         {
-            view.backgroundColor = UIColor.blueColor()
+            view.backgroundColor = defaultElementColor
         }
     }
     

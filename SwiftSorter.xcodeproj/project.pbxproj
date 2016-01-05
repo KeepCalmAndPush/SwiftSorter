@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77ACCB731C3BB14B00555750 /* InsertionSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ACCB721C3BB14B00555750 /* InsertionSorter.swift */; settings = {ASSET_TAGS = (); }; };
+		77ACCB761C3BE35B00555750 /* BubbleSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ACCB751C3BE35B00555750 /* BubbleSorter.swift */; settings = {ASSET_TAGS = (); }; };
 		77AEF1161C396F8900009F41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEF1151C396F8900009F41 /* AppDelegate.swift */; };
-		77AEF1181C396F8900009F41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEF1171C396F8900009F41 /* ViewController.swift */; };
+		77AEF1181C396F8900009F41 /* SortingDiagramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEF1171C396F8900009F41 /* SortingDiagramViewController.swift */; };
 		77AEF11D1C396F8900009F41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77AEF11C1C396F8900009F41 /* Assets.xcassets */; };
 		77AEF12B1C396F8900009F41 /* SwiftSorterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEF12A1C396F8900009F41 /* SwiftSorterUITests.swift */; };
 		77AEF1371C39851E00009F41 /* DiagramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEF1361C39851E00009F41 /* DiagramView.swift */; settings = {ASSET_TAGS = (); }; };
@@ -27,9 +29,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		77ACCB721C3BB14B00555750 /* InsertionSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InsertionSorter.swift; path = Algorithms/InsertionSorter.swift; sourceTree = "<group>"; };
+		77ACCB751C3BE35B00555750 /* BubbleSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BubbleSorter.swift; path = Algorithms/BubbleSorter.swift; sourceTree = "<group>"; };
 		77AEF1121C396F8900009F41 /* SwiftSorter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftSorter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77AEF1151C396F8900009F41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		77AEF1171C396F8900009F41 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		77AEF1171C396F8900009F41 /* SortingDiagramViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingDiagramViewController.swift; sourceTree = "<group>"; };
 		77AEF11C1C396F8900009F41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77AEF1211C396F8900009F41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77AEF1261C396F8900009F41 /* SwiftSorterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftSorterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +62,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		77ACCB771C3BE73B00555750 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				77AEF1171C396F8900009F41 /* SortingDiagramViewController.swift */,
+			);
+			name = VC;
+			sourceTree = "<group>";
+		};
+		77ACCB781C3BE75100555750 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				77AEF1151C396F8900009F41 /* AppDelegate.swift */,
+				77AEF11C1C396F8900009F41 /* Assets.xcassets */,
+				77AEF1211C396F8900009F41 /* Info.plist */,
+			);
+			name = "Supporting files";
+			sourceTree = "<group>";
+		};
 		77AEF1091C396F8800009F41 = {
 			isa = PBXGroup;
 			children = (
@@ -79,12 +101,10 @@
 		77AEF1141C396F8900009F41 /* SwiftSorter */ = {
 			isa = PBXGroup;
 			children = (
-				77D47B881C3AEE87002D4675 /* Algorithms */,
+				77ACCB771C3BE73B00555750 /* VC */,
 				77AEF1351C39850200009F41 /* Views */,
-				77AEF1151C396F8900009F41 /* AppDelegate.swift */,
-				77AEF1171C396F8900009F41 /* ViewController.swift */,
-				77AEF11C1C396F8900009F41 /* Assets.xcassets */,
-				77AEF1211C396F8900009F41 /* Info.plist */,
+				77D47B881C3AEE87002D4675 /* Sorters */,
+				77ACCB781C3BE75100555750 /* Supporting files */,
 			);
 			path = SwiftSorter;
 			sourceTree = "<group>";
@@ -106,13 +126,15 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		77D47B881C3AEE87002D4675 /* Algorithms */ = {
+		77D47B881C3AEE87002D4675 /* Sorters */ = {
 			isa = PBXGroup;
 			children = (
 				77D47B8B1C3AEF1F002D4675 /* Sorter.swift */,
 				77D47B891C3AEF0E002D4675 /* SelectionSorter.swift */,
+				77ACCB721C3BB14B00555750 /* InsertionSorter.swift */,
+				77ACCB751C3BE35B00555750 /* BubbleSorter.swift */,
 			);
-			name = Algorithms;
+			name = Sorters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,7 +238,9 @@
 				77AEF1371C39851E00009F41 /* DiagramView.swift in Sources */,
 				77D47B8C1C3AEF1F002D4675 /* Sorter.swift in Sources */,
 				77D47B8A1C3AEF0E002D4675 /* SelectionSorter.swift in Sources */,
-				77AEF1181C396F8900009F41 /* ViewController.swift in Sources */,
+				77AEF1181C396F8900009F41 /* SortingDiagramViewController.swift in Sources */,
+				77ACCB761C3BE35B00555750 /* BubbleSorter.swift in Sources */,
+				77ACCB731C3BB14B00555750 /* InsertionSorter.swift in Sources */,
 				77AEF1161C396F8900009F41 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

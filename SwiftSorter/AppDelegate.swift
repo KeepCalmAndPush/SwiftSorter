@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
-        let v : ViewController = ViewController()
+        let v = SortingDiagramViewController()
         let navigator = UINavigationController(rootViewController: v)
         
         window?.rootViewController = navigator
