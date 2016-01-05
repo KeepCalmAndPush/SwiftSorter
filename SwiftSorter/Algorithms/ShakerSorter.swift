@@ -8,41 +8,53 @@
 
 import UIKit
 
-class BubbleSorter: Sorter
+class ShakerSorter: Sorter
 {
     private var lastPermutationIndex : Int? //Оптимизация для частично отсортированных массивов. Проходим не весь остаток массива, а только до индекса последней перестановки
+    
+    private var surfaceBoundIndex : Int?
+    private var bottomBoundIndex : Int?
     
     override init()
     {
         super.init()
-        refreshInterval = 0.2
+        refreshInterval = 0.1
         
-        algorithmName = "Пузырьком"
+        algorithmName = "Шейкер-сортировка"
     }
     
     override func sort()
     {
-        var surfaceElementIndex = 0
+        surfaceBoundIndex = 0
+        bottomBoundIndex = (self.array?.count)! - 1
         
-        while surfaceElementIndex != self.array!.count - 1
+        repeat
         {
-            floatLightestElementUpToSurface(surfaceElementIndex)
+            floatLightestElementUpToSurface(surfaceBoundIndex!)
             
-            if(stopped)
+            if lastPermutationIndex == nil
             {
                 break
-            }
-            
-            if let lastIndex = lastPermutationIndex
-            {
-                surfaceElementIndex = max(lastIndex, surfaceElementIndex + 1)
-                lastPermutationIndex = nil
             }
             else
             {
+                surfaceBoundIndex = lastPermutationIndex!
+                lastPermutationIndex = nil
+            }
+
+            drownHeaviestElementDownToBottom(bottomBoundIndex!)
+            
+            if lastPermutationIndex == nil
+            {
                 break
             }
+            else
+            {
+                bottomBoundIndex = lastPermutationIndex! - 1
+                lastPermutationIndex = nil
+            }
         }
+        while bottomBoundIndex > surfaceBoundIndex
         
         self.diagramView?.clearSelection()
     }
@@ -71,6 +83,32 @@ class BubbleSorter: Sorter
             else
             {
                 self.diagramView?.highlightComparisonFailedForElementAtIndex(elementIndex, comparedToElementAtIndex: elementIndex - 1)
+            }
+        }
+    }
+    
+    func drownHeaviestElementDownToBottom(bottomElementIndex : Int)
+    {
+        for elementIndex in 1...bottomElementIndex
+        {
+            if(stopped)
+            {
+                return
+            }
+            
+            let element = self.array?[elementIndex-1]
+            let elementBelow = self.array![elementIndex]
+            
+            if element > elementBelow
+            {
+                self.diagramView?.highlightComparisonSucceededForElementAtIndex(elementIndex-1, comparedToElementAtIndex: elementIndex)
+                swapElementsAtIndices(index1: elementIndex - 1, index2: elementIndex)
+                
+                lastPermutationIndex = elementIndex
+            }
+            else
+            {
+                self.diagramView?.highlightComparisonFailedForElementAtIndex(elementIndex - 1, comparedToElementAtIndex: elementIndex)
             }
         }
     }

@@ -24,9 +24,28 @@ extension Array {
     }
 }
 
-class SortingDiagramViewController: UIViewController, SorterPickerViewDelegate
+class SortingViewController: UIViewController, SorterPickerViewControllerDelegate
 {
+    var restartSortingButtonItem : UIBarButtonItem?
+    var showSortingAlgorithmsButtonItem : UIBarButtonItem?
+    var shuffleButtonItem : UIBarButtonItem?
+    
+    
+    private var _sorter : Sorter?
     var sorter : Sorter?
+    {
+        get
+        {
+            return _sorter
+        }
+        
+        set(newSorter)
+        {
+            _sorter?.stop()
+            _sorter = newSorter
+            self.title = _sorter?.algorithmName
+        }
+    }
     
     var _diagramView : DiagramView! = nil
     var diagramView : DiagramView?
@@ -66,27 +85,33 @@ class SortingDiagramViewController: UIViewController, SorterPickerViewDelegate
             
             return _sourceArray
         }
+        set(newArray)
+        {
+            _sourceArray = newArray
+        }
     }
     
-    private var _sorterPicker : SorterPickerView?
-    var sorterPicker  : SorterPickerView
+    private var _sorterPickerVC : SorterPickerViewController?
+    var sorterPickerVC : SorterPickerViewController
     {
         get
         {
-            if let picker = _sorterPicker
+            if let picker = _sorterPickerVC
             {
                 return picker
             }
             
             
-            _sorterPicker = SorterPickerView(frame: self.view.bounds)
-            _sorterPicker?.sorters = [SelectionSorter(), InsertionSorter(), BubbleSorter()]
-            _sorterPicker?.delegate = self
-            _sorterPicker?.hidden = true
+            _sorterPickerVC = SorterPickerViewController()
+            _sorterPickerVC?.sorters = [SelectionSorter(), InsertionSorter(), BubbleSorter(), ShakerSorter()]
+            _sorterPickerVC?.delegate = self
             
-            self.view.addSubview(_sorterPicker!)
-            
-            return _sorterPicker!
+            return _sorterPickerVC!
+        }
+        
+        set(newSorterPickerVC)
+        {
+            _sorterPickerVC = newSorterPickerVC
         }
     }
     
@@ -95,7 +120,7 @@ class SortingDiagramViewController: UIViewController, SorterPickerViewDelegate
 
     private func fillArray()
     {
-        _sourceArray = []
+//        _sourceArray = [2, 3, 4, 5, 6, 7, 8, 9, 10, 1]
         
         for element in 1...arrayLength
         {
@@ -109,13 +134,14 @@ class SortingDiagramViewController: UIViewController, SorterPickerViewDelegate
     {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.whiteColor()
         self.title = "Сортировки"
         self.navigationController?.navigationBar.translucent = false
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         self.view.backgroundColor = UIColor.lightGrayColor()
         
         self.sorter = SelectionSorter()
-        self.title = self.sorter?.algorithmName
         
         placeNavbarButtons()
 
@@ -126,11 +152,12 @@ class SortingDiagramViewController: UIViewController, SorterPickerViewDelegate
     
     private func placeNavbarButtons()
     {
-        let restartSortingButtonItem = UIBarButtonItem(barButtonSystemItem: .Play, target: self, action: "restartSorting:")
-        let showSortingAlgorithmsButtonItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: "showSortingAlgorithmsButtonItemTapped:")
-        let shuffleButtonItem = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "restartSorting:")
+        restartSortingButtonItem = UIBarButtonItem(barButtonSystemItem: .Play, target: self, action: "restartSorting:")
+        showSortingAlgorithmsButtonItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: "showSortersPicker:")
+        shuffleButtonItem = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "shuffleArray:")
         
-        self.navigationItem.rightBarButtonItems = [showSortingAlgorithmsButtonItem, shuffleButtonItem, restartSortingButtonItem]
+        self.navigationItem.leftBarButtonItems = [showSortingAlgorithmsButtonItem!, shuffleButtonItem!]
+        self.navigationItem.rightBarButtonItems = [restartSortingButtonItem!]
     }
     
     override func viewWillLayoutSubviews()
@@ -152,71 +179,56 @@ class SortingDiagramViewController: UIViewController, SorterPickerViewDelegate
             
             self.diagramView!.frame = frame
         }
-        
-        self.sorterPicker.frame = self.view.bounds
-
         self.diagramView!.layoutIfNeeded()
+    }
+    
+    private func prepareForSorting()
+    {
+        self.diagramView = nil
+        
+        let sourceArray = self.sourceArray;
+        self.sorter?.diagramView = self.diagramView
+        self.sorter?.array = sourceArray;
+        self.sorter?.stopped = false
     }
 
     private func startSorting()
     {
-        var arrayCopy = self.sourceArray
-    
-        sorter?.diagramView = self.diagramView
-        sorter?.array = arrayCopy;
-        
+        prepareForSorting()
         sorter?.sort()
     }
     
     func restartSorting(sender : UIBarButtonItem)
     {
-        sender.enabled = false
-        
-        self.sorter?.stop()
-        self.diagramView = nil
-        
+        restartSortingButtonItem?.enabled = false
+        shuffleButtonItem?.enabled = false
+
         startSorting()
         
-        sender.enabled = true
+        restartSortingButtonItem?.enabled = true
+        shuffleButtonItem?.enabled = true
     }
     
-     func pickerViewDidPickSorter(pickerView : SorterPickerView, sorter: Sorter)
+     func pickerViewDidPickSorter(pickerView : SorterPickerViewController, sorter: Sorter)
      {
         self.sorter = sorter
         
-        self.title = self.sorter?.algorithmName
+        prepareForSorting()
+
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func showSortingAlgorithmsButtonItemTapped(sender : UIBarButtonItem)
+    func showSortersPicker(sender : UIBarButtonItem)
     {
-        if self.sorterPicker.hidden
-        {
-            showSorterPicker()
-        }
-        else
-        {
-            hideSorterPicker()
-        }
+        let pickerNavController = UINavigationController(rootViewController: self.sorterPickerVC)
+        self.presentViewController(pickerNavController, animated: true, completion: nil)
     }
-    
-    func showSorterPicker()
+
+    func shuffleArray(sender : UIBarButtonItem)
     {
-        self.view.insertSubview(self.sorterPicker, aboveSubview: self.diagramView!)
-        
-        UIView.animateWithDuration(0.5) { () -> Void in
-            self.sorterPicker.hidden = false
-        }
-    }
-    
-    func hideSorterPicker()
-    {
-        UIView.animateWithDuration(0.5,
-            animations: { () -> Void in
-                self.sorterPicker.hidden = true
-            },
-            completion: {(finised : Bool) -> Void in
-                self.sorterPicker.removeFromSuperview()
-            })
+        self.sorter?.stop()
+        self.sourceArray!.shuffle()
+        prepareForSorting()
     }
 }
 

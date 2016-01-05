@@ -10,25 +10,10 @@ import UIKit
 
 class Sorter: NSObject
 {
-    private var _array : [Int]?
-    private var _diagramView : DiagramView?
-    
     var algorithmName : String = ""
     
-    var diagramView : DiagramView?
-    {
-        get
-        {
-            return _diagramView
-        }
-        
-        set(newDiagramView)
-        {
-            _diagramView = newDiagramView
-            _diagramView?.refreshInterval = self.refreshInterval
-        }
-    }
-    
+    private var _array : [Int]?
+
     internal var stopped = false
     internal var refreshInterval = 0.3
     
@@ -51,6 +36,22 @@ class Sorter: NSObject
         }
     }
     
+    private var _diagramView : DiagramView?
+    var diagramView : DiagramView?
+        {
+        get
+        {
+            return _diagramView
+        }
+        
+        set(newDiagramView)
+        {
+            _diagramView = newDiagramView
+            _diagramView?.refreshInterval = self.refreshInterval
+            _diagramView?.array = self.array!
+        }
+    }
+    
     func sort()
     {
         //Override
@@ -58,8 +59,8 @@ class Sorter: NSObject
     
     func stop()
     {
-        stopped = true
-        diagramView = nil
+        self.stopped = true
+        self.diagramView = nil
         self.array = nil
     }
     

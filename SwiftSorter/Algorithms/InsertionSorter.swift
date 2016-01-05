@@ -14,7 +14,7 @@ class InsertionSorter: Sorter
     override init()
     {
         super.init()
-        refreshInterval = 0.3
+        refreshInterval = 0.15
         
         algorithmName = "Простыми вставками"
     }
@@ -25,6 +25,11 @@ class InsertionSorter: Sorter
         {
             self.diagramView?.selectElementAtIndex(currentElementIndex)
             moveToSortedPartElementWithIndex(currentElementIndex)
+            
+            if(stopped)
+            {
+                break
+            }
         }
         
         self.diagramView?.clearSelection()
@@ -36,16 +41,21 @@ class InsertionSorter: Sorter
         
         while previousElementIndex >= 0
         {
+            if(stopped)
+            {
+                return
+            }
+            
             let elementToMove = self.array![previousElementIndex + 1]
             let previousElement = self.array![previousElementIndex]
             
             if previousElement > elementToMove
             {
-                swapElementsAtIndices(index1: previousElementIndex, index2: previousElementIndex + 1)
-                
                 self.diagramView?.highlightComparisonSucceededForElementAtIndex(previousElementIndex + 1,
                     comparedToElementAtIndex: previousElementIndex)
                 
+                swapElementsAtIndices(index1: previousElementIndex, index2: previousElementIndex + 1)
+
                 previousElementIndex--;
             }
             else

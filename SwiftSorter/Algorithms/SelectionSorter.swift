@@ -31,7 +31,7 @@ class SelectionSorter: Sorter
             
             if stopped
             {
-                return
+                break
             }
             
             swapElementsAtIndices(index1:currentElementIndex,
