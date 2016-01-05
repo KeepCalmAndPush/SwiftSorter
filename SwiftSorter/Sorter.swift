@@ -11,9 +11,26 @@ import UIKit
 class Sorter: NSObject
 {
     private var _array : [Int]?
+    private var _diagramView : DiagramView?
+    
+    var algorithmName : String = ""
+    
     var diagramView : DiagramView?
+    {
+        get
+        {
+            return _diagramView
+        }
+        
+        set(newDiagramView)
+        {
+            _diagramView = newDiagramView
+            _diagramView?.refreshInterval = self.refreshInterval
+        }
+    }
     
     internal var stopped = false
+    internal var refreshInterval = 0.3
     
     var array : [Int]?
     {

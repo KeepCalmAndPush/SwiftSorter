@@ -10,6 +10,14 @@ import UIKit
 
 class SelectionSorter: Sorter
 {
+    override init()
+    {
+        super.init()
+        refreshInterval = 0.2
+        
+        algorithmName = "Выбором"
+    }
+    
     override func sort()
     {
         for currentElementIndex in 0..<self.array!.count

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		77ACCB731C3BB14B00555750 /* InsertionSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ACCB721C3BB14B00555750 /* InsertionSorter.swift */; settings = {ASSET_TAGS = (); }; };
 		77ACCB761C3BE35B00555750 /* BubbleSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ACCB751C3BE35B00555750 /* BubbleSorter.swift */; settings = {ASSET_TAGS = (); }; };
+		77ACCB7A1C3BFB1700555750 /* SorterPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ACCB791C3BFB1700555750 /* SorterPickerView.swift */; settings = {ASSET_TAGS = (); }; };
 		77AEF1161C396F8900009F41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEF1151C396F8900009F41 /* AppDelegate.swift */; };
 		77AEF1181C396F8900009F41 /* SortingDiagramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEF1171C396F8900009F41 /* SortingDiagramViewController.swift */; };
 		77AEF11D1C396F8900009F41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77AEF11C1C396F8900009F41 /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		77ACCB721C3BB14B00555750 /* InsertionSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InsertionSorter.swift; path = Algorithms/InsertionSorter.swift; sourceTree = "<group>"; };
 		77ACCB751C3BE35B00555750 /* BubbleSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BubbleSorter.swift; path = Algorithms/BubbleSorter.swift; sourceTree = "<group>"; };
+		77ACCB791C3BFB1700555750 /* SorterPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SorterPickerView.swift; sourceTree = "<group>"; };
 		77AEF1121C396F8900009F41 /* SwiftSorter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftSorter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77AEF1151C396F8900009F41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77AEF1171C396F8900009F41 /* SortingDiagramViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingDiagramViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				77AEF1361C39851E00009F41 /* DiagramView.swift */,
+				77ACCB791C3BFB1700555750 /* SorterPickerView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77AEF1371C39851E00009F41 /* DiagramView.swift in Sources */,
+				77ACCB7A1C3BFB1700555750 /* SorterPickerView.swift in Sources */,
 				77D47B8C1C3AEF1F002D4675 /* Sorter.swift in Sources */,
 				77D47B8A1C3AEF0E002D4675 /* SelectionSorter.swift in Sources */,
 				77AEF1181C396F8900009F41 /* SortingDiagramViewController.swift in Sources */,

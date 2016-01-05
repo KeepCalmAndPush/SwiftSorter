@@ -62,6 +62,8 @@ class DiagramView: UIView
         }
     }
     
+    var refreshInterval : NSTimeInterval = runLoopTimeInterval
+    
     override init(frame: CGRect)
     {
         super.init(frame: frame)
@@ -128,13 +130,15 @@ class DiagramView: UIView
         swappedFirstViewFrame?.origin.x = (secondView?.frame.origin)!.x
         swappedSecondViewFrame?.origin.x = (firstView?.frame.origin)!.x
         
-        UIView.animateWithDuration(0.9 * runLoopTimeInterval, animations: { () -> Void in
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
             firstView?.frame = swappedFirstViewFrame!
             secondView?.frame = swappedSecondViewFrame!
         });
         
         self.viewsOrdinanceDict[fromIndex] = secondView
         self.viewsOrdinanceDict[toIndex] = firstView
+        
+        NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: 0.3))
     }
     
     func selectElementAtIndex(index : Int)
@@ -146,7 +150,7 @@ class DiagramView: UIView
         
         selectedElementAtIndex = index
         
-        NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: runLoopTimeInterval))
+        NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: refreshInterval))
     }
     
     func highlightComparisonSucceededForElementAtIndex(elementIndex : Int, comparedToElementAtIndex : Int)
@@ -159,7 +163,7 @@ class DiagramView: UIView
         elementView?.backgroundColor = selectionColor
         comparisonElementView?.backgroundColor = successfulComparisonColor
         
-        NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: runLoopTimeInterval))
+        NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: refreshInterval))
     }
     
     func highlightComparisonFailedForElementAtIndex(elementIndex : Int, comparedToElementAtIndex : Int)
@@ -172,7 +176,7 @@ class DiagramView: UIView
         elementView?.backgroundColor = selectionColor
         comparisonElementView?.backgroundColor = failedComparisonColor
         
-        NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: runLoopTimeInterval))
+        NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: refreshInterval))
     }
     
     func deselectElementAtIndex(index : Int?)

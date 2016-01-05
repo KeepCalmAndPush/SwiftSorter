@@ -10,6 +10,15 @@ import UIKit
 
 class InsertionSorter: Sorter
 {
+    
+    override init()
+    {
+        super.init()
+        refreshInterval = 0.3
+        
+        algorithmName = "Простыми вставками"
+    }
+    
     override func sort()
     {
         for currentElementIndex in 0..<self.array!.count

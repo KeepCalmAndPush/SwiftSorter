@@ -8,6 +8,8 @@
 
 import UIKit
 
+let arrayLength = 10
+
 extension Array {
     mutating func shuffle() {
         if count < 2 { return }
@@ -22,7 +24,7 @@ extension Array {
     }
 }
 
-class SortingDiagramViewController: UIViewController
+class SortingDiagramViewController: UIViewController, SorterPickerViewDelegate
 {
     var sorter : Sorter?
     
@@ -46,14 +48,13 @@ class SortingDiagramViewController: UIViewController
             if newDiagram == nil
             {
                 _diagramView?.removeFromSuperview()
-                
-                _diagramView = newDiagram
             }
+            
+            _diagramView = newDiagram
         }
     }
     
-    var  _sourceArray : [Int] = []
-    
+    private var  _sourceArray : [Int] = []
     var sourceArray : [Int]!
     {
         get
@@ -66,12 +67,37 @@ class SortingDiagramViewController: UIViewController
             return _sourceArray
         }
     }
+    
+    private var _sorterPicker : SorterPickerView?
+    var sorterPicker  : SorterPickerView
+    {
+        get
+        {
+            if let picker = _sorterPicker
+            {
+                return picker
+            }
+            
+            
+            _sorterPicker = SorterPickerView(frame: self.view.bounds)
+            _sorterPicker?.sorters = [SelectionSorter(), InsertionSorter(), BubbleSorter()]
+            _sorterPicker?.delegate = self
+            _sorterPicker?.hidden = true
+            
+            self.view.addSubview(_sorterPicker!)
+            
+            return _sorterPicker!
+        }
+    }
+    
+    
+    ////
 
-    func fillArray()
+    private func fillArray()
     {
         _sourceArray = []
         
-        for element in 1...25
+        for element in 1...arrayLength
         {
             _sourceArray.append(element)
         }
@@ -84,16 +110,27 @@ class SortingDiagramViewController: UIViewController
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.whiteColor()
-        self.title = "Глагне"
+        self.title = "Сортировки"
         self.navigationController?.navigationBar.translucent = false
+        self.view.backgroundColor = UIColor.lightGrayColor()
         
+        self.sorter = SelectionSorter()
+        self.title = self.sorter?.algorithmName
         
-        let uibb = UIBarButtonItem(barButtonSystemItem: .Play, target: self, action: "restartSorting:")
-        self.navigationItem.rightBarButtonItem = uibb
+        placeNavbarButtons()
 
         fillArray()
         
         self.diagramView?.array = self.sourceArray
+    }
+    
+    private func placeNavbarButtons()
+    {
+        let restartSortingButtonItem = UIBarButtonItem(barButtonSystemItem: .Play, target: self, action: "restartSorting:")
+        let showSortingAlgorithmsButtonItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: "showSortingAlgorithmsButtonItemTapped:")
+        let shuffleButtonItem = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "restartSorting:")
+        
+        self.navigationItem.rightBarButtonItems = [showSortingAlgorithmsButtonItem, shuffleButtonItem, restartSortingButtonItem]
     }
     
     override func viewWillLayoutSubviews()
@@ -108,22 +145,23 @@ class SortingDiagramViewController: UIViewController
         }
         else
         {
-            let frame = CGRect(x: 10,
+            let frame = CGRect(x: 0,
                                y: (self.view.bounds.height - (self.view.bounds.width - 0)) / 2,
                            width: self.view.bounds.width - 0,
                           height: self.view.bounds.width)
             
             self.diagramView!.frame = frame
         }
+        
+        self.sorterPicker.frame = self.view.bounds
 
         self.diagramView!.layoutIfNeeded()
     }
 
-    func startSorting()
+    private func startSorting()
     {
         var arrayCopy = self.sourceArray
-        
-        self.sorter = InsertionSorter()
+    
         sorter?.diagramView = self.diagramView
         sorter?.array = arrayCopy;
         
@@ -140,6 +178,45 @@ class SortingDiagramViewController: UIViewController
         startSorting()
         
         sender.enabled = true
+    }
+    
+     func pickerViewDidPickSorter(pickerView : SorterPickerView, sorter: Sorter)
+     {
+        self.sorter = sorter
+        
+        self.title = self.sorter?.algorithmName
+    }
+    
+    func showSortingAlgorithmsButtonItemTapped(sender : UIBarButtonItem)
+    {
+        if self.sorterPicker.hidden
+        {
+            showSorterPicker()
+        }
+        else
+        {
+            hideSorterPicker()
+        }
+    }
+    
+    func showSorterPicker()
+    {
+        self.view.insertSubview(self.sorterPicker, aboveSubview: self.diagramView!)
+        
+        UIView.animateWithDuration(0.5) { () -> Void in
+            self.sorterPicker.hidden = false
+        }
+    }
+    
+    func hideSorterPicker()
+    {
+        UIView.animateWithDuration(0.5,
+            animations: { () -> Void in
+                self.sorterPicker.hidden = true
+            },
+            completion: {(finised : Bool) -> Void in
+                self.sorterPicker.removeFromSuperview()
+            })
     }
 }
 
