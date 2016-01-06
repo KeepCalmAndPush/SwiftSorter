@@ -18,7 +18,7 @@ class SelectionSorter: Sorter
         algorithmName = "Выбором"
     }
     
-    override func sortArray(arrayToSort: [Int])
+    override func sortArray(inout arrayToSort: [Int])
     {
         for currentElementIndex in 0..<arrayToSort.count
         {
@@ -29,20 +29,18 @@ class SelectionSorter: Sorter
             
             let currentMinElementIndex = minElementIndexInRangeOfArray(remainingRange, array: arrayToSort)
 
-            if stopped
+            if array == nil
             {
                 break
             }
             
             swapElementsAtIndices(index1:currentElementIndex,
                                   index2:currentMinElementIndex!,
-                                 inArray:arrayToSort)
+                                 inArray:&arrayToSort)
         }
-        
-        self.diagramView?.clearSelection()
     }
     
-    func minElementIndexInRangeOfArray(range: NSRange, array arrayToSort: [Int]) -> Int?
+    func minElementIndexInRangeOfArray(range: NSRange, var array arrayToSort: [Int]) -> Int?
     {
         var minElementIndex = range.location
         var minElement : Int = arrayToSort[minElementIndex]
@@ -59,7 +57,7 @@ class SelectionSorter: Sorter
             
             self.diagramView?.highlightComparisonSucceededForElementAtIndex(index, comparedToElementAtIndex: minElementIndex)
             
-            if stopped
+            if array == nil
             {
                 return nil
             }

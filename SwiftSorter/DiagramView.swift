@@ -59,7 +59,7 @@ class DiagramView: UIView
                 processArray()
             }
             
-            layoutIfNeeded()
+            setNeedsLayout()
         }
     }
     
@@ -151,7 +151,7 @@ class DiagramView: UIView
         
         selectedElementAtIndex = index
         
-        NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: refreshInterval))
+        delay()
     }
     
     func highlightComparisonSucceededForElementAtIndex(elementIndex : Int, comparedToElementAtIndex : Int)
@@ -164,7 +164,7 @@ class DiagramView: UIView
         elementView?.backgroundColor = selectionColor
         comparisonElementView?.backgroundColor = successfulComparisonColor
         
-        NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: refreshInterval))
+        delay()
     }
     
     func highlightComparisonFailedForElementAtIndex(elementIndex : Int, comparedToElementAtIndex : Int)
@@ -177,7 +177,7 @@ class DiagramView: UIView
         elementView?.backgroundColor = selectionColor
         comparisonElementView?.backgroundColor = failedComparisonColor
         
-        NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: refreshInterval))
+        delay()
     }
     
     func deselectElementAtIndex(index : Int?)
@@ -199,7 +199,13 @@ class DiagramView: UIView
         }
     }
     
-    override func layoutSubviews() {
+    func delay()
+    {
+        NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: refreshInterval))
+    }
+    
+    override func layoutSubviews()
+    {
         super.layoutSubviews()
         
         if self.array.count == 0
@@ -208,13 +214,10 @@ class DiagramView: UIView
         }
         
         self.contentView.frame = CGRectInset(self.bounds, 10.0, 10.0)
-        
-        processArray()
+
         prepareConstants()
         
-//        UIView.animateWithDuration(0.5, animations :{ () -> Void in
-            self.drawDiagram()
-//        })
+        drawDiagram()
     }
     
     required init(coder aDecoder: NSCoder) {

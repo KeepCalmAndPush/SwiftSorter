@@ -23,14 +23,14 @@ class ShakerSorter: Sorter
         algorithmName = "Шейкер-сортировка"
     }
     
-    override func sortArray(arrayToSort: [Int])
+    override func sortArray(inout arrayToSort: [Int])
     {
         surfaceBoundIndex = 0
         bottomBoundIndex = arrayToSort.count - 1
         
         repeat
         {
-            floatLightestElementUpToSurface(surfaceBoundIndex!, inArray: arrayToSort)
+            floatLightestElementUpToSurface(surfaceBoundIndex!, inArray: &arrayToSort)
             
             if lastPermutationIndex == nil
             {
@@ -42,7 +42,7 @@ class ShakerSorter: Sorter
                 lastPermutationIndex = nil
             }
 
-            drownHeaviestElementDownToBottom(bottomBoundIndex!, inArray: arrayToSort)
+            drownHeaviestElementDownToBottom(bottomBoundIndex!, inArray: &arrayToSort)
             
             if lastPermutationIndex == nil
             {
@@ -55,17 +55,15 @@ class ShakerSorter: Sorter
             }
         }
         while bottomBoundIndex > surfaceBoundIndex
-        
-        self.diagramView?.clearSelection()
     }
     
-    func floatLightestElementUpToSurface(surfaceElementIndex : Int, inArray arrayToSort:[Int])
+    func floatLightestElementUpToSurface(surfaceElementIndex : Int, inout inArray arrayToSort:[Int])
     {
         let floatingStartElement : Int = arrayToSort.count - 1
         
         for elementIndex in floatingStartElement.stride(to: surfaceElementIndex, by: -1)
         {
-            if(stopped)
+            if array == nil
             {
                 return
             }
@@ -77,7 +75,7 @@ class ShakerSorter: Sorter
             {
                 self.diagramView?.highlightComparisonSucceededForElementAtIndex(elementIndex, comparedToElementAtIndex: elementIndex - 1)
                 swapElementsAtIndices(index1: elementIndex - 1, index2: elementIndex,
-                    inArray:arrayToSort)
+                    inArray:&arrayToSort)
                 
                 lastPermutationIndex = elementIndex
             }
@@ -88,13 +86,13 @@ class ShakerSorter: Sorter
         }
     }
     
-    func drownHeaviestElementDownToBottom(bottomElementIndex : Int, inArray arrayToSort:[Int])
+    func drownHeaviestElementDownToBottom(bottomElementIndex : Int, inout inArray arrayToSort:[Int])
     {
         for elementIndex in 1...bottomElementIndex
         {
-            if(stopped)
+            if array == nil
             {
-                return
+               return
             }
             
             let element = arrayToSort[elementIndex-1]
@@ -104,7 +102,7 @@ class ShakerSorter: Sorter
             {
                 self.diagramView?.highlightComparisonSucceededForElementAtIndex(elementIndex-1, comparedToElementAtIndex: elementIndex)
                 swapElementsAtIndices(index1: elementIndex - 1, index2: elementIndex,
-                    inArray:arrayToSort)
+                    inArray:&arrayToSort)
                 
                 lastPermutationIndex = elementIndex
             }

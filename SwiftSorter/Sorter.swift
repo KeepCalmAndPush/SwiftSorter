@@ -14,7 +14,6 @@ class Sorter: NSObject
     
     private var _array : [Int]?
 
-    internal var stopped = false
     internal var refreshInterval = 0.3
     
     var array : [Int]?
@@ -29,10 +28,9 @@ class Sorter: NSObject
         set(newArray)
         {
             _array = newArray
-            
             _array = _array ?? []
             
-            diagramView?.array = _array!
+            self.diagramView?.array = _array!
         }
     }
     
@@ -54,22 +52,23 @@ class Sorter: NSObject
     
     func sort()
     {
-        sortArray(self.array!)
+        sortArray(&self.array!)
+        
+        self.diagramView?.clearSelection()
     }
     
-    func sortArray(arrayToSort: [Int])
+    func sortArray(inout arrayToSort: [Int])
     {
         //Override
     }
     
     func stop()
     {
-        self.stopped = true
         self.diagramView = nil
         self.array = nil
     }
-    
-    func swapElementsAtIndices(index1 index1: Int, index2 : Int, var inArray array: [Int])
+
+    func swapElementsAtIndices(index1 index1: Int, index2 : Int, inout inArray array: [Int])
     {
         let currentElement = array[index1]
         let currentMinElement = array[index2]

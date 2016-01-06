@@ -20,15 +20,15 @@ class BubbleSorter: Sorter
         algorithmName = "Пузырьком"
     }
     
-    override func sortArray(arrayToSort: [Int])
+    override func sortArray(inout arrayToSort: [Int])
     {
         var surfaceElementIndex = 0
         
         while surfaceElementIndex != arrayToSort.count - 1
         {
-            floatLightestElementUpToSurface(surfaceElementIndex, inArray: arrayToSort)
+            floatLightestElementUpToSurface(surfaceElementIndex, inArray: &arrayToSort)
             
-            if(stopped)
+            if array == nil
             {
                 break
             }
@@ -43,29 +43,26 @@ class BubbleSorter: Sorter
                 break
             }
         }
-        
-        self.diagramView?.clearSelection()
     }
     
-    func floatLightestElementUpToSurface(surfaceElementIndex : Int, inArray arrayToSort:[Int])
+    func floatLightestElementUpToSurface(surfaceElementIndex : Int, inout inArray arrayToSort:[Int])
     {
-        let floatingStartElement : Int = (self.array?.count)! - 1
+        let floatingStartElement : Int = arrayToSort.count - 1
         
         for elementIndex in floatingStartElement.stride(to: surfaceElementIndex, by: -1)
         {
-            if(stopped)
+            if array == nil
             {
                 return
             }
             
-            let element = self.array?[elementIndex]
+            let element = arrayToSort[elementIndex]
             let elementAbove = arrayToSort[elementIndex - 1]
             
             if element < elementAbove
             {
                 self.diagramView?.highlightComparisonSucceededForElementAtIndex(elementIndex, comparedToElementAtIndex: elementIndex - 1)
-                swapElementsAtIndices(index1: elementIndex - 1, index2: elementIndex,
-                    inArray:arrayToSort)
+                swapElementsAtIndices(index1: elementIndex - 1, index2: elementIndex, inArray:&arrayToSort)
                 
                 lastPermutationIndex = elementIndex
             }

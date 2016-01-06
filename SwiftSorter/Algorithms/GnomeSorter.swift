@@ -18,12 +18,17 @@ class GnomeSorter: Sorter
         algorithmName = "Гномья сортировка"
     }
     
-    override func sortArray(arrayToSort: [Int])
+    override func sortArray(inout arrayToSort: [Int])
     {
         var currentElementIndex = 0
         
         while currentElementIndex < arrayToSort.count
         {
+            if array == nil
+            {
+                break
+            }
+            
             if (currentElementIndex == 0)
             {
                 currentElementIndex++
@@ -39,7 +44,7 @@ class GnomeSorter: Sorter
                 self.diagramView?.highlightComparisonSucceededForElementAtIndex(currentElementIndex, comparedToElementAtIndex: previousElementIndex)
                 
                 swapElementsAtIndices(index1: currentElementIndex, index2: previousElementIndex,
-                    inArray:arrayToSort)
+                    inArray:&arrayToSort)
                 
                 currentElementIndex = previousElementIndex
             }
@@ -50,7 +55,5 @@ class GnomeSorter: Sorter
                 currentElementIndex++
             }
         }
-        
-        self.diagramView?.clearSelection()
     }
 }

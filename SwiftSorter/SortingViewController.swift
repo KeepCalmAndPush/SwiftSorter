@@ -42,9 +42,10 @@ class SortingViewController: UIViewController, SorterPickerViewControllerDelegat
         set(newSorter)
         {
             _sorter?.stop()
+            
             _sorter = newSorter
-            _sorter?.diagramView = diagramView
-            _sorter?.array = sourceArray;
+            _sorter?.array = self.sourceArray
+            _sorter?.diagramView = self.diagramView
                 
             self.title = _sorter?.algorithmName
         }
@@ -104,7 +105,6 @@ class SortingViewController: UIViewController, SorterPickerViewControllerDelegat
                 return picker
             }
             
-            
             _sorterPickerVC = SorterPickerViewController()
             _sorterPickerVC?.delegate = self
             
@@ -122,7 +122,7 @@ class SortingViewController: UIViewController, SorterPickerViewControllerDelegat
 
     private func fillArray()
     {
-//        _sourceArray = [2, 3, 4, 5, 6, 7, 8, 9, 10, 1]
+        _sourceArray.removeAll()
         
         for element in 1...arrayLength
         {
@@ -143,13 +143,11 @@ class SortingViewController: UIViewController, SorterPickerViewControllerDelegat
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.view.backgroundColor = UIColor.lightGrayColor()
         
-        self.sorter = SelectionSorter()
-        
-        placeNavbarButtons()
-
         fillArray()
         
-        self.diagramView?.array = self.sourceArray
+        self.sorter = SelectionSorter()
+
+        placeNavbarButtons()
     }
     
     private func placeNavbarButtons()
@@ -186,10 +184,10 @@ class SortingViewController: UIViewController, SorterPickerViewControllerDelegat
     
     private func prepareForSorting()
     {
-        self.diagramView = nil
-        
         let sourceArray = self.sourceArray;
-        self.sorter?.array = sourceArray;
+        
+        self.sorter?.array = sourceArray
+        self.sorter?.diagramView = self.diagramView
     }
 
     private func startSorting()
@@ -203,7 +201,8 @@ class SortingViewController: UIViewController, SorterPickerViewControllerDelegat
         restartSortingButtonItem?.enabled = false
         shuffleButtonItem?.enabled = false
 
-        startSorting()
+         startSorting()
+//        sorter?.sort()
         
         restartSortingButtonItem?.enabled = true
         shuffleButtonItem?.enabled = true
@@ -221,6 +220,7 @@ class SortingViewController: UIViewController, SorterPickerViewControllerDelegat
     func showSortersPicker(sender : UIBarButtonItem)
     {
         self.sorterPickerVC.sorters = [SelectionSorter(), InsertionSorter(), BubbleSorter(), ShakerSorter(), GnomeSorter()]
+        
         let pickerNavController = UINavigationController(rootViewController: self.sorterPickerVC)
         self.presentViewController(pickerNavController, animated: true, completion: nil)
     }
