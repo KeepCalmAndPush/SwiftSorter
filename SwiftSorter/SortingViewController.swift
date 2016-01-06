@@ -8,7 +8,7 @@
 
 import UIKit
 
-let arrayLength = 10
+let arrayLength = 30
 
 extension Array {
     mutating func shuffle() {
@@ -219,7 +219,7 @@ class SortingViewController: UIViewController, SorterPickerViewControllerDelegat
     
     func showSortersPicker(sender : UIBarButtonItem)
     {
-        self.sorterPickerVC.sorters = [SelectionSorter(), InsertionSorter(), BubbleSorter(), ShakerSorter(), GnomeSorter()]
+        self.sorterPickerVC.sorters = [SelectionSorter(), InsertionSorter(), BubbleSorter(), ShakerSorter(), GnomeSorter(), ShellSorter()]
         
         let pickerNavController = UINavigationController(rootViewController: self.sorterPickerVC)
         self.presentViewController(pickerNavController, animated: true, completion: nil)

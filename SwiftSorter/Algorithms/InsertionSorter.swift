@@ -21,9 +21,16 @@ class InsertionSorter: Sorter
     
     override func sortArray(inout arrayToSort: [Int])
     {
-        for currentElementIndex in 0..<arrayToSort.count
+        let set : NSIndexSet = NSIndexSet(indexesInRange: NSMakeRange(0, arrayToSort.count))
+        
+        sortArrayInIndexSet(&arrayToSort, set: set)
+    }
+    
+    func sortArrayInIndexSet(inout arrayToSort: [Int], set:NSIndexSet)
+    {
+        for currentElementIndex in set
         {
-            moveToSortedPartElementWithIndex(currentElementIndex, inArray: &arrayToSort)
+            moveToSortedPartElementWithIndex(currentElementIndex, indexSet:set, inArray: &arrayToSort)
             
             if array == nil
             {
@@ -32,34 +39,36 @@ class InsertionSorter: Sorter
         }
     }
 
-    func moveToSortedPartElementWithIndex(elementToMoveIndex : Int, inout inArray arrayToSort:[Int])
+    func moveToSortedPartElementWithIndex(elementToMoveIndex : Int, indexSet : NSIndexSet, inout inArray arrayToSort:[Int])
     {
-        var previousElementIndex = elementToMoveIndex - 1
+        var previousElementIndex = indexSet.indexLessThanIndex(elementToMoveIndex)
         
-        while previousElementIndex >= 0
+        while previousElementIndex != NSNotFound
         {
             if array == nil
             {
                 return
             }
             
-            let elementToMove = arrayToSort[previousElementIndex + 1]
+            let currentElementIndex = indexSet.indexGreaterThanIndex(previousElementIndex)
+            
+            let elementToMove = arrayToSort[currentElementIndex]
             let previousElement = arrayToSort[previousElementIndex]
             
             if previousElement > elementToMove
             {
-                self.diagramView?.highlightComparisonSucceededForElementAtIndex(previousElementIndex + 1,
-                    comparedToElementAtIndex: previousElementIndex)
+                self.diagramView?.highlightComparisonSucceededForElementAtIndex(currentElementIndex,
+                                                      comparedToElementAtIndex: previousElementIndex)
                 
                 swapElementsAtIndices(index1: previousElementIndex,
-                                      index2: previousElementIndex + 1,
+                                      index2: currentElementIndex,
                                      inArray: &arrayToSort)
 
-                previousElementIndex--;
+                previousElementIndex = indexSet.indexLessThanIndex(previousElementIndex)
             }
             else
             {
-                self.diagramView?.highlightComparisonFailedForElementAtIndex(previousElementIndex + 1, comparedToElementAtIndex:previousElementIndex)
+                self.diagramView?.highlightComparisonFailedForElementAtIndex(currentElementIndex, comparedToElementAtIndex:previousElementIndex)
                 break
             }
         }

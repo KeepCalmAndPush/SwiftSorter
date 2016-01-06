@@ -13,7 +13,7 @@ class ShellSorter: InsertionSorter
     override init()
     {
         super.init()
-        refreshInterval = 0.2
+        refreshInterval = 0.1
         
         algorithmName = "Сортировка Шелла"
     }
@@ -24,38 +24,38 @@ class ShellSorter: InsertionSorter
         
         while distance > 0
         {
-            let subarrays = subarraysForDistance(distance, inArray: arrayToSort)
+            let indexSets = indexSetsForDistance(distance, inArray:arrayToSort)
             
-            for var subarray : [Int] in subarrays
+            for indexSet in indexSets
             {
-                super.sortArray(&subarray)
+                super.sortArrayInIndexSet(&arrayToSort, set:indexSet)
             }
             
-            distance = distance / 2
+            distance /= 2
         }
     }
     
     
-    func subarraysForDistance(distance : Int, inArray array:[Int]) -> [[Int]]
+    func indexSetsForDistance(distance : Int, inArray array:[Int]) -> [NSIndexSet]
     {
-        var arraysForDistance = [[Int]]()
+        var indexSetsForDistance = [NSIndexSet]()
         
         for startingElementIndex in 0..<distance
         {
-            var array = [Int]()
+            let indexSet = NSMutableIndexSet()
             
             var elementIndex = startingElementIndex
             
-            while elementIndex < array.count
+            while elementIndex  < array.count
             {
-                array.append(array[elementIndex])
+                indexSet.addIndex(elementIndex)
                 
                 elementIndex += distance
             }
             
-            arraysForDistance.append(array)
+            indexSetsForDistance.append(indexSet)
         }
         
-        return arraysForDistance
+        return indexSetsForDistance
     }
 }
