@@ -18,11 +18,21 @@ class SorterPickerViewController: UITableViewController
     var sorters : [Sorter] = [Sorter]()
     var delegate : SorterPickerViewControllerDelegate?
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
         self.title = "Выберите алгоритм"
+        self.view.backgroundColor = UIColor.lightGrayColor()
+        
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "SorterCell")
+    }
+    
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -42,12 +52,15 @@ class SorterPickerViewController: UITableViewController
         let sorter = sorterForIndex(indexPath.row)
         
         cell.textLabel?.text = sorter.algorithmName
+        cell.backgroundColor = self.view.backgroundColor
         
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
         let sorter = sorterForIndex(indexPath.row)
         delegate?.pickerViewDidPickSorter(self, sorter: sorter)
     }

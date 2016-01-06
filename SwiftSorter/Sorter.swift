@@ -38,7 +38,7 @@ class Sorter: NSObject
     
     private var _diagramView : DiagramView?
     var diagramView : DiagramView?
-        {
+    {
         get
         {
             return _diagramView
@@ -54,6 +54,11 @@ class Sorter: NSObject
     
     func sort()
     {
+        sortArray(self.array!)
+    }
+    
+    func sortArray(arrayToSort: [Int])
+    {
         //Override
     }
     
@@ -64,13 +69,13 @@ class Sorter: NSObject
         self.array = nil
     }
     
-    func swapElementsAtIndices(index1 index1: Int, index2 : Int)
+    func swapElementsAtIndices(index1 index1: Int, index2 : Int, var inArray array: [Int])
     {
-        let currentElement = self.array![index1]
-        let currentMinElement = self.array![index2]
+        let currentElement = array[index1]
+        let currentMinElement = array[index2]
         
-        self.array![index1] = currentMinElement
-        self.array![index2] = currentElement
+        array[index1] = currentMinElement
+        array[index2] = currentElement
         
         self.diagramView?.swapElements(fromIndex: index1, toIndex: index2)
     }

@@ -20,13 +20,13 @@ class BubbleSorter: Sorter
         algorithmName = "Пузырьком"
     }
     
-    override func sort()
+    override func sortArray(arrayToSort: [Int])
     {
         var surfaceElementIndex = 0
         
-        while surfaceElementIndex != self.array!.count - 1
+        while surfaceElementIndex != arrayToSort.count - 1
         {
-            floatLightestElementUpToSurface(surfaceElementIndex)
+            floatLightestElementUpToSurface(surfaceElementIndex, inArray: arrayToSort)
             
             if(stopped)
             {
@@ -47,7 +47,7 @@ class BubbleSorter: Sorter
         self.diagramView?.clearSelection()
     }
     
-    func floatLightestElementUpToSurface(surfaceElementIndex : Int)
+    func floatLightestElementUpToSurface(surfaceElementIndex : Int, inArray arrayToSort:[Int])
     {
         let floatingStartElement : Int = (self.array?.count)! - 1
         
@@ -59,12 +59,13 @@ class BubbleSorter: Sorter
             }
             
             let element = self.array?[elementIndex]
-            let elementAbove = self.array![elementIndex - 1]
+            let elementAbove = arrayToSort[elementIndex - 1]
             
             if element < elementAbove
             {
                 self.diagramView?.highlightComparisonSucceededForElementAtIndex(elementIndex, comparedToElementAtIndex: elementIndex - 1)
-                swapElementsAtIndices(index1: elementIndex - 1, index2: elementIndex)
+                swapElementsAtIndices(index1: elementIndex - 1, index2: elementIndex,
+                    inArray:arrayToSort)
                 
                 lastPermutationIndex = elementIndex
             }

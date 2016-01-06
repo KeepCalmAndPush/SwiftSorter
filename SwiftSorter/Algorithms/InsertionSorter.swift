@@ -19,12 +19,12 @@ class InsertionSorter: Sorter
         algorithmName = "Простыми вставками"
     }
     
-    override func sort()
+    override func sortArray(arrayToSort: [Int])
     {
-        for currentElementIndex in 0..<self.array!.count
+        for currentElementIndex in 0..<arrayToSort.count
         {
             self.diagramView?.selectElementAtIndex(currentElementIndex)
-            moveToSortedPartElementWithIndex(currentElementIndex)
+            moveToSortedPartElementWithIndex(currentElementIndex, inArray: arrayToSort)
             
             if(stopped)
             {
@@ -35,7 +35,7 @@ class InsertionSorter: Sorter
         self.diagramView?.clearSelection()
     }
 
-    func moveToSortedPartElementWithIndex(elementToMoveIndex : Int)
+    func moveToSortedPartElementWithIndex(elementToMoveIndex : Int, inArray arrayToSort:[Int])
     {
         var previousElementIndex = elementToMoveIndex - 1
         
@@ -46,15 +46,16 @@ class InsertionSorter: Sorter
                 return
             }
             
-            let elementToMove = self.array![previousElementIndex + 1]
-            let previousElement = self.array![previousElementIndex]
+            let elementToMove = arrayToSort[previousElementIndex + 1]
+            let previousElement = arrayToSort[previousElementIndex]
             
             if previousElement > elementToMove
             {
                 self.diagramView?.highlightComparisonSucceededForElementAtIndex(previousElementIndex + 1,
                     comparedToElementAtIndex: previousElementIndex)
                 
-                swapElementsAtIndices(index1: previousElementIndex, index2: previousElementIndex + 1)
+                swapElementsAtIndices(index1: previousElementIndex, index2: previousElementIndex + 1,
+                    inArray:arrayToSort)
 
                 previousElementIndex--;
             }

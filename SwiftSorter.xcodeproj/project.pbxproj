@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77485E0D1C3D802F0077EA00 /* ShellSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77485E0C1C3D802F0077EA00 /* ShellSorter.swift */; settings = {ASSET_TAGS = (); }; };
 		77ACCB731C3BB14B00555750 /* InsertionSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ACCB721C3BB14B00555750 /* InsertionSorter.swift */; settings = {ASSET_TAGS = (); }; };
 		77ACCB761C3BE35B00555750 /* BubbleSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ACCB751C3BE35B00555750 /* BubbleSorter.swift */; settings = {ASSET_TAGS = (); }; };
 		77ACCB7A1C3BFB1700555750 /* SorterPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ACCB791C3BFB1700555750 /* SorterPickerViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -16,6 +17,7 @@
 		77AEF11D1C396F8900009F41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77AEF11C1C396F8900009F41 /* Assets.xcassets */; };
 		77AEF12B1C396F8900009F41 /* SwiftSorterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEF12A1C396F8900009F41 /* SwiftSorterUITests.swift */; };
 		77AEF1371C39851E00009F41 /* DiagramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEF1361C39851E00009F41 /* DiagramView.swift */; settings = {ASSET_TAGS = (); }; };
+		77C282151C3CF25D008DBD1C /* GnomeSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C282141C3CF25D008DBD1C /* GnomeSorter.swift */; settings = {ASSET_TAGS = (); }; };
 		77D47B8A1C3AEF0E002D4675 /* SelectionSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D47B891C3AEF0E002D4675 /* SelectionSorter.swift */; settings = {ASSET_TAGS = (); }; };
 		77D47B8C1C3AEF1F002D4675 /* Sorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D47B8B1C3AEF1F002D4675 /* Sorter.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -31,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		77485E0C1C3D802F0077EA00 /* ShellSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShellSorter.swift; sourceTree = "<group>"; };
 		77ACCB721C3BB14B00555750 /* InsertionSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InsertionSorter.swift; path = Algorithms/InsertionSorter.swift; sourceTree = "<group>"; };
 		77ACCB751C3BE35B00555750 /* BubbleSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BubbleSorter.swift; path = Algorithms/BubbleSorter.swift; sourceTree = "<group>"; };
 		77ACCB791C3BFB1700555750 /* SorterPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SorterPickerViewController.swift; sourceTree = "<group>"; };
@@ -44,6 +47,7 @@
 		77AEF12A1C396F8900009F41 /* SwiftSorterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSorterUITests.swift; sourceTree = "<group>"; };
 		77AEF12C1C396F8900009F41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77AEF1361C39851E00009F41 /* DiagramView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagramView.swift; sourceTree = "<group>"; };
+		77C282141C3CF25D008DBD1C /* GnomeSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GnomeSorter.swift; path = Algorithms/GnomeSorter.swift; sourceTree = "<group>"; };
 		77D47B891C3AEF0E002D4675 /* SelectionSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectionSorter.swift; path = Algorithms/SelectionSorter.swift; sourceTree = "<group>"; };
 		77D47B8B1C3AEF1F002D4675 /* Sorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sorter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,8 +141,10 @@
 				77D47B8B1C3AEF1F002D4675 /* Sorter.swift */,
 				77D47B891C3AEF0E002D4675 /* SelectionSorter.swift */,
 				77ACCB721C3BB14B00555750 /* InsertionSorter.swift */,
+				77485E0C1C3D802F0077EA00 /* ShellSorter.swift */,
 				77ACCB751C3BE35B00555750 /* BubbleSorter.swift */,
 				77ACCB7B1C3C210900555750 /* ShakerSorter.swift */,
+				77C282141C3CF25D008DBD1C /* GnomeSorter.swift */,
 			);
 			name = Sorters;
 			sourceTree = "<group>";
@@ -245,7 +251,9 @@
 				77ACCB7A1C3BFB1700555750 /* SorterPickerViewController.swift in Sources */,
 				77D47B8C1C3AEF1F002D4675 /* Sorter.swift in Sources */,
 				77D47B8A1C3AEF0E002D4675 /* SelectionSorter.swift in Sources */,
+				77485E0D1C3D802F0077EA00 /* ShellSorter.swift in Sources */,
 				77ACCB7C1C3C210900555750 /* ShakerSorter.swift in Sources */,
+				77C282151C3CF25D008DBD1C /* GnomeSorter.swift in Sources */,
 				77AEF1181C396F8900009F41 /* SortingViewController.swift in Sources */,
 				77ACCB761C3BE35B00555750 /* BubbleSorter.swift in Sources */,
 				77ACCB731C3BB14B00555750 /* InsertionSorter.swift in Sources */,

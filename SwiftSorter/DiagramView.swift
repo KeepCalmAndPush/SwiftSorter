@@ -15,6 +15,7 @@ let failedComparisonColor = UIColor.redColor()
 let diagramBackgroundColor = UIColor.lightGrayColor()
 
 let runLoopTimeInterval = 0.2
+let swapAnimationDuration = 0.3
 
 class DiagramView: UIView
 {
@@ -130,7 +131,7 @@ class DiagramView: UIView
         swappedFirstViewFrame?.origin.x = (secondView?.frame.origin)!.x
         swappedSecondViewFrame?.origin.x = (firstView?.frame.origin)!.x
         
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
+        UIView.animateWithDuration(swapAnimationDuration, animations: { () -> Void in
             firstView?.frame = swappedFirstViewFrame!
             secondView?.frame = swappedSecondViewFrame!
         });
@@ -138,7 +139,7 @@ class DiagramView: UIView
         self.viewsOrdinanceDict[fromIndex] = secondView
         self.viewsOrdinanceDict[toIndex] = firstView
         
-        NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: 0.3))
+        NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: swapAnimationDuration))
     }
     
     func selectElementAtIndex(index : Int)
