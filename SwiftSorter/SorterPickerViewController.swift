@@ -8,15 +8,9 @@
 
 import UIKit
 
-protocol SorterPickerViewControllerDelegate
-{
-    func pickerViewDidPickSorter(pickerView : SorterPickerViewController, sorter: Sorter);
-}
-
 class SorterPickerViewController: UITableViewController
 {
     var sorters : [Sorter] = [Sorter]()
-    var delegate : SorterPickerViewControllerDelegate?
     
     override func viewDidLoad()
     {
@@ -52,6 +46,7 @@ class SorterPickerViewController: UITableViewController
         let sorter = sorterForIndex(indexPath.row)
         
         cell.textLabel?.text = sorter.algorithmName
+        cell.accessoryType = .DisclosureIndicator
         cell.backgroundColor = self.view.backgroundColor
         
         return cell
@@ -62,7 +57,11 @@ class SorterPickerViewController: UITableViewController
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         let sorter = sorterForIndex(indexPath.row)
-        delegate?.pickerViewDidPickSorter(self, sorter: sorter)
+    
+        let sortingController = SortingViewController()
+        sortingController.sorter = sorter
+        
+        self.navigationController?.pushViewController(sortingController, animated: true)
     }
     
     func sorterForIndex(index : Int) -> Sorter

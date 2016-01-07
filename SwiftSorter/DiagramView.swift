@@ -15,7 +15,7 @@ let failedComparisonColor = UIColor.redColor()
 let diagramBackgroundColor = UIColor.lightGrayColor()
 
 let runLoopTimeInterval = 0.2
-let swapAnimationDuration = 0.1
+let swapAnimationDuration = 0.3
 
 class DiagramView: UIView
 {
@@ -52,6 +52,11 @@ class DiagramView: UIView
         
         set(newArray)
         {
+            if newArray == _array
+            {
+                return
+            }
+            
             _array = newArray
             
             if _array.count > 0

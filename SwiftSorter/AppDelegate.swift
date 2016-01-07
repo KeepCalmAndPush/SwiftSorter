@@ -19,10 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
-        let v = SortingViewController()
-        let navigator = UINavigationController(rootViewController: v)
+        let pickerVC  = SorterPickerViewController()
+        pickerVC.sorters = [SelectionSorter(), InsertionSorter(), BubbleSorter(), ShakerSorter(), GnomeSorter(), ShellSorter(), HeapSorter()]
         
-        window?.rootViewController = navigator
+        let navigationVC = UINavigationController(rootViewController: pickerVC)
+        navigationVC.navigationBar.translucent = false
+        
+        window?.rootViewController = navigationVC
         window?.makeKeyAndVisible()
         
         return true

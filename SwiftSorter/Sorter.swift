@@ -71,9 +71,9 @@ class Sorter: NSObject
     func swapElementsAtIndices(index1 index1: Int, index2 : Int, inout inArray array: [Int])
     {
         let currentElement = array[index1]
-        let currentMinElement = array[index2]
+        let currentOtherElement = array[index2]
         
-        array[index1] = currentMinElement
+        array[index1] = currentOtherElement
         array[index2] = currentElement
         
         self.diagramView?.swapElements(fromIndex: index1, toIndex: index2)
