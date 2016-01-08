@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		77485E0D1C3D802F0077EA00 /* ShellSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77485E0C1C3D802F0077EA00 /* ShellSorter.swift */; };
+		779428931C3FFAB700489E66 /* QuickSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779428921C3FFAB700489E66 /* QuickSorter.swift */; };
 		77ACCB731C3BB14B00555750 /* InsertionSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ACCB721C3BB14B00555750 /* InsertionSorter.swift */; };
 		77ACCB761C3BE35B00555750 /* BubbleSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ACCB751C3BE35B00555750 /* BubbleSorter.swift */; };
 		77ACCB7A1C3BFB1700555750 /* SorterPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ACCB791C3BFB1700555750 /* SorterPickerViewController.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		77485E0C1C3D802F0077EA00 /* ShellSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShellSorter.swift; sourceTree = "<group>"; };
+		779428921C3FFAB700489E66 /* QuickSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuickSorter.swift; path = Algorithms/QuickSorter.swift; sourceTree = "<group>"; };
 		77ACCB721C3BB14B00555750 /* InsertionSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InsertionSorter.swift; path = Algorithms/InsertionSorter.swift; sourceTree = "<group>"; };
 		77ACCB751C3BE35B00555750 /* BubbleSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BubbleSorter.swift; path = Algorithms/BubbleSorter.swift; sourceTree = "<group>"; };
 		77ACCB791C3BFB1700555750 /* SorterPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SorterPickerViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				77ACCB7B1C3C210900555750 /* ShakerSorter.swift */,
 				77C282141C3CF25D008DBD1C /* GnomeSorter.swift */,
 				77BCAD751C3E6112008DCC36 /* HeapSorter.swift */,
+				779428921C3FFAB700489E66 /* QuickSorter.swift */,
 			);
 			name = Sorters;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				77AEF1371C39851E00009F41 /* DiagramView.swift in Sources */,
 				77ACCB7A1C3BFB1700555750 /* SorterPickerViewController.swift in Sources */,
 				77D47B8C1C3AEF1F002D4675 /* Sorter.swift in Sources */,
+				779428931C3FFAB700489E66 /* QuickSorter.swift in Sources */,
 				77D47B8A1C3AEF0E002D4675 /* SelectionSorter.swift in Sources */,
 				77485E0D1C3D802F0077EA00 /* ShellSorter.swift in Sources */,
 				77ACCB7C1C3C210900555750 /* ShakerSorter.swift in Sources */,

@@ -46,12 +46,9 @@ class HeapSorter: Sorter
 
             self.diagramView?.highlightComparisonSucceededForElementAtIndex(elementToMoveUpIndex, comparedToElementAtIndex:biggestChildElementIndex)
             swapElementsAtIndices(index1: elementToMoveUpIndex, index2: biggestChildElementIndex, inArray: &arrayToSort)
-//            arrayToSort[elementToMoveUpIndex] = biggestChildElement
-            
+
             elementToMoveUpIndex = biggestChildElementIndex
         }
-        
-//        arrayToSort[elementToMoveUpIndex] = currentElement
     }
     
     func biggestChildElementIndexForElementAtIndex(currentElementIndex : Int, inArray arrayToSort: [Int], remainingLength : Int) -> Int
@@ -100,9 +97,6 @@ class HeapSorter: Sorter
         
         for currentElementIndex : Int in length.stride(to: 0, by: -1)
         {
-//            let t = arrayToSort[0]
-//            arrayToSort[0] = arrayToSort[currentElementIndex]
-//            arrayToSort[currentElementIndex] = t
             self.diagramView?.highlightComparisonSucceededForElementAtIndex(0, comparedToElementAtIndex: currentElementIndex)
             swapElementsAtIndices(index1: 0, index2: currentElementIndex, inArray: &arrayToSort)
 

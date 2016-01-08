@@ -16,11 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         let pickerVC  = SorterPickerViewController()
-        pickerVC.sorters = [SelectionSorter(), InsertionSorter(), BubbleSorter(), ShakerSorter(), GnomeSorter(), ShellSorter(), HeapSorter()]
+        pickerVC.sorters = [SelectionSorter(), InsertionSorter(), BubbleSorter(), ShakerSorter(), GnomeSorter(), ShellSorter(), HeapSorter(), QuickSorter()]
         
         let navigationVC = UINavigationController(rootViewController: pickerVC)
         navigationVC.navigationBar.translucent = false
