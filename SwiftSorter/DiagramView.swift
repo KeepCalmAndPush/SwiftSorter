@@ -69,6 +69,7 @@ class DiagramView: UIView
     }
     
     var refreshInterval : NSTimeInterval = runLoopTimeInterval
+    var animationDuration = swapAnimationDuration
     
     override init(frame: CGRect)
     {
@@ -136,7 +137,7 @@ class DiagramView: UIView
         swappedFirstViewFrame?.origin.x = (secondView?.frame.origin)!.x
         swappedSecondViewFrame?.origin.x = (firstView?.frame.origin)!.x
         
-        UIView.animateWithDuration(swapAnimationDuration, animations: { () -> Void in
+        UIView.animateWithDuration(animationDuration, animations: { () -> Void in
             firstView?.frame = swappedFirstViewFrame!
             secondView?.frame = swappedSecondViewFrame!
         });
@@ -144,17 +145,27 @@ class DiagramView: UIView
         self.viewsOrdinanceDict[fromIndex] = secondView
         self.viewsOrdinanceDict[toIndex] = firstView
         
-        NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: swapAnimationDuration))
+        NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: animationDuration))
     }
     
     func selectElementAtIndex(index : Int)
     {
+        selectElementsAtIndices([index])
+        
+        delay()
+    }
+    
+    func selectElementsAtIndices(indices : [Int])
+    {
         deselectElementAtIndex(selectedElementAtIndex)
         
-        let viewAtIndex = self.viewsOrdinanceDict[index]
-        viewAtIndex?.backgroundColor = selectionColor
-        
-        selectedElementAtIndex = index
+        for index in indices
+        {
+            let viewAtIndex = self.viewsOrdinanceDict[index]
+            viewAtIndex?.backgroundColor = selectionColor
+            
+            selectedElementAtIndex = index
+        }
         
         delay()
     }

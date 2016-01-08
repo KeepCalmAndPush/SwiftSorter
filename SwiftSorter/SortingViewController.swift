@@ -8,7 +8,7 @@
 
 import UIKit
 
-let arrayLength = 5
+let arrayLength = 15
 
 extension Array {
     mutating func shuffle() {
@@ -97,15 +97,15 @@ class SortingViewController: UIViewController
 
     private func fillArray()
     {
-//        _sourceArray.removeAll()
-//        
-//        for element in 1...arrayLength
-//        {
-//            _sourceArray.append(element)
-//        }
-//        
-//        _sourceArray.shuffle()
-        _sourceArray = [1, 12, 5, 26, 7, 14, 3, 7, 2]
+        _sourceArray.removeAll()
+        
+        for element in 1...arrayLength
+        {
+            _sourceArray.append(element)
+        }
+        
+        _sourceArray.shuffle()
+//        _sourceArray = [1, 12, 5, 26, 7, 14, 3, 7, 2, 19]
     }
     
     override func viewDidLoad()

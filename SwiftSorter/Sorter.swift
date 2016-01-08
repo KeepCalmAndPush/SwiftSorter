@@ -15,6 +15,7 @@ class Sorter: NSObject
     private var _array : [Int]?
 
     internal var refreshInterval = 0.3
+    internal var animationDuration = 0.3
     
     var array : [Int]?
     {
@@ -46,6 +47,7 @@ class Sorter: NSObject
         {
             _diagramView = newDiagramView
             _diagramView?.refreshInterval = self.refreshInterval
+            _diagramView?.animationDuration = self.animationDuration
             _diagramView?.array = self.array!
         }
     }

@@ -20,136 +20,45 @@ class QuickSorter: Sorter
     
     override func sortArray(inout array: [Int])
     {
-        let arrayToSortRange = NSMakeRange(0, array.count)
-        
-        quickSort(&array, inRange: arrayToSortRange)
-        
-        print("result: \((array))")
+        quickSort(&array, left: 0, right: array.count - 1)
     }
     
-    func quickSort(inout array: [Int], inRange range: NSRange)
+    func quickSort(inout array: [Int], left: Int, right: Int)
     {
-        if range.length <= 1
+        var i = left, j = right;
+        let pivotIndex = (left + right) / 2
+        let pivot = array[pivotIndex];
+        
+        self.diagramView?.selectElementsAtIndices(Array(left...right))
+        
+        while (i <= j)
         {
-            print("sorting array with range \(NSStringFromRange(range)), els: \(array[range.location..<range.location+range.length]) -- return")
-            return
-        }
-        
-        let arrayMaxIndex = range.location + range.length - 1
-        
-        let baseElementIndex = range.location + (range.length - 1) / 2
-        let baseElement = array[baseElementIndex]
-        
-        var leftElementIndex = range.location
-        var rightElementIndex = arrayMaxIndex
-        
-        print("sorting array with range \(NSStringFromRange(range)), els: \(array[range.location..<range.location+range.length]) bei: \(baseElementIndex), be: \(baseElement)")
-        
-//        while lessThanBaseElementIndex <= greaterThanBaseElementIndex
-//        {
-//            let lessThanBaseElement = array[lessThanBaseElementIndex]
-//            let greaterThanBaseElement = array[greaterThanBaseElementIndex]
-//            
-//            if lessThanBaseElement > baseElement &&
-//                baseElement > greaterThanBaseElement
-//            {
-//                array[lessThanBaseElementIndex] = greaterThanBaseElement
-//                array[greaterThanBaseElementIndex] = lessThanBaseElement
-//            }
-//            
-//            lessThanBaseElementIndex++
-//            greaterThanBaseElementIndex--
-//        }
-        
-        while leftElementIndex <= rightElementIndex
-        {
-            var leftElement = array[leftElementIndex]
-            var rightElement = array[rightElementIndex]
-            
-            while leftElement < baseElement
+            while (array[i] < pivot)
             {
-                leftElementIndex++
-                leftElement = array[leftElementIndex]
+                i++;
             }
-            while rightElement > baseElement
+            while (array[j] > pivot)
             {
-                rightElementIndex--
-                rightElement = array[rightElementIndex]
+                j--;
             }
             
-            if leftElementIndex <= rightElementIndex
+            if (i <= j)
             {
-                array[leftElementIndex] = rightElement
-                array[rightElementIndex] = leftElement
+                self.swapElementsAtIndices(index1: i, index2: j, inArray: &array)
                 
-                leftElementIndex++
-                rightElementIndex--
+                i++;
+                j--;
             }
-        }
-        
-//        while lessThanBaseElementIndex <= greaterThanBaseElementIndex
-//        {
-//            let lessThanBaseElement = array[lessThanBaseElementIndex]
-//
-//            if lessThanBaseElement >= baseElement
-//            {
-//                while lessThanBaseElementIndex <= greaterThanBaseElementIndex
-//                {
-//                    let greaterThanBaseElement = array[greaterThanBaseElementIndex]
-//                    
-//                    if greaterThanBaseElement <= baseElement
-//                    {
-//                        self.diagramView?.highlightComparisonSucceededForElementAtIndex(lessThanBaseElementIndex, comparedToElementAtIndex: greaterThanBaseElementIndex)
-//                        
-//                        swapElementsAtIndices(index1: lessThanBaseElementIndex, index2: greaterThanBaseElementIndex, inArray: &array)
-//                        
-//                        greaterThanBaseElementIndex--
-//                        
-//                        break
-//                    }
-//                    else
-//                    {
-//                        self.diagramView?.highlightComparisonFailedForElementAtIndex(lessThanBaseElementIndex, comparedToElementAtIndex: greaterThanBaseElementIndex)
-//                    }
-//                    
-//                    greaterThanBaseElementIndex--
-//                }
-//            }
-//            else
-//            {
-//                self.diagramView?.highlightComparisonFailedForElementAtIndex(lessThanBaseElementIndex, comparedToElementAtIndex: greaterThanBaseElementIndex)
-//            }
-//            
-//            lessThanBaseElementIndex++
-//        }
-        
-        print("result: \((array[range.location..<range.location+range.length]))")
-        
-        let leftArrayRange = leftArrayRangeForRange(range, baseElementIndex: baseElementIndex)
-        let rightArrayRange = rightArrayRangeForRange(range, baseElementIndex: baseElementIndex)
-        
-        quickSort(&array, inRange: leftArrayRange)
-        quickSort(&array, inRange: rightArrayRange)
-    }
-    
-    func leftArrayRangeForRange(range : NSRange, baseElementIndex : Int)  -> NSRange
-    {
-        let lessThanBaseArrayRange : NSRange
-        let lessThanBaseArrayLength = baseElementIndex - range.location + 1
-        lessThanBaseArrayRange = NSMakeRange(range.location, lessThanBaseArrayLength)
-        
-        return lessThanBaseArrayRange
-    }
-    
-    func rightArrayRangeForRange(range : NSRange, baseElementIndex : Int) -> NSRange
-    {
-        let greaterThanBaseArrayRange : NSRange
-        let greaterThanBaseArrayLocation = baseElementIndex + 1
-        let greaterThanBaseArrayLength = range.location + range.length - greaterThanBaseArrayLocation
-        
-        greaterThanBaseArrayRange = NSMakeRange(baseElementIndex + 1, greaterThanBaseArrayLength)
-        
-        return greaterThanBaseArrayRange
-    }
+        };
 
+        
+        if (left < j)
+        {
+            quickSort(&array, left:left, right:j);
+        }
+        if (i < right)
+        {
+            quickSort(&array, left:i, right:right);
+        }
+    }
 }
