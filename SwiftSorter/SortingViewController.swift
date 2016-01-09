@@ -8,7 +8,7 @@
 
 import UIKit
 
-let arrayLength = 15
+let arrayLength = 10
 
 extension Array {
     mutating func shuffle() {
@@ -27,7 +27,6 @@ extension Array {
 class SortingViewController: UIViewController
 {
     var restartSortingButtonItem : UIBarButtonItem?
-    var showSortingAlgorithmsButtonItem : UIBarButtonItem?
     var shuffleButtonItem : UIBarButtonItem?
     
     
@@ -47,7 +46,7 @@ class SortingViewController: UIViewController
             _sorter?.array = self.sourceArray
             _sorter?.diagramView = self.diagramView
 
-            self.title = _sorter?.algorithmName
+            self.title = "???"// _sorter?.algorithmName
         }
     }
     
@@ -99,13 +98,14 @@ class SortingViewController: UIViewController
     {
         _sourceArray.removeAll()
         
-        for element in 1...arrayLength
+        let length = self.sorter?.suitableElementsCount ?? arrayLength
+        
+        for element in 1...length
         {
             _sourceArray.append(element)
         }
         
         _sourceArray.shuffle()
-//        _sourceArray = [1, 12, 5, 26, 7, 14, 3, 7, 2, 19]
     }
     
     override func viewDidLoad()
@@ -117,20 +117,16 @@ class SortingViewController: UIViewController
         self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.view.backgroundColor = UIColor.lightGrayColor()
-        
-        fillArray()
-        
+
         placeNavbarButtons()
     }
     
     private func placeNavbarButtons()
     {
         restartSortingButtonItem = UIBarButtonItem(barButtonSystemItem: .Play, target: self, action: "restartSorting:")
-        showSortingAlgorithmsButtonItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: "showSortersPicker:")
         shuffleButtonItem = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "shuffleArray:")
         
         self.navigationItem.rightBarButtonItems = [shuffleButtonItem!, restartSortingButtonItem!]
-//        self.navigationItem.rightBarButtonItems = [restartSortingButtonItem!]
     }
     
     override func viewWillLayoutSubviews()

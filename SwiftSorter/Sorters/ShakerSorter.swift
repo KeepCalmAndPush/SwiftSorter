@@ -18,7 +18,7 @@ class ShakerSorter: Sorter
     override init()
     {
         super.init()
-        refreshInterval = 0.1
+        refreshInterval = 0.2
         
         algorithmName = "Шейкер-сортировка"
     }

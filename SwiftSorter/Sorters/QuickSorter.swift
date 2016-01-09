@@ -13,7 +13,7 @@ class QuickSorter: Sorter
     override init()
     {
         super.init()
-        refreshInterval = 0.2
+        refreshInterval = 0.3
         
         algorithmName = "Быстрая сортировка"
     }
@@ -44,6 +44,8 @@ class QuickSorter: Sorter
             
             if (i <= j)
             {
+                self.diagramView?.highlightComparisonSucceededForElementAtIndex(i, comparedToElementAtIndex:j)
+                
                 self.swapElementsAtIndices(index1: i, index2: j, inArray: &array)
                 
                 i++;

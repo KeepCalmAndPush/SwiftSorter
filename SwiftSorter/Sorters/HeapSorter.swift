@@ -13,7 +13,7 @@ class HeapSorter: Sorter
     override init()
     {
         super.init()
-        refreshInterval = 0.15
+        refreshInterval = 0.2
         animationDuration = 0.2
         
         algorithmName = "Сортировка кучей (heap)"
@@ -59,24 +59,29 @@ class HeapSorter: Sorter
         let firstChildElementIndex = 2 * currentElementIndex
         let firstChildElement = arrayToSort[firstChildElementIndex]
         
-        self.diagramView?.selectElementAtIndex(firstChildElementIndex)
+        var secondChildElementIndex : Int?
         
         var biggestChildElementIndex = firstChildElementIndex
         
         if (firstChildElementIndex < remainingLength)
         {
-            self.diagramView?.selectElementAtIndex(currentElementIndex)
-            
-            let secondChildElementIndex = firstChildElementIndex + 1
-            let secondChildElement = arrayToSort[secondChildElementIndex]
-            
-            self.diagramView?.selectElementAtIndex(secondChildElementIndex)
+            secondChildElementIndex = firstChildElementIndex + 1
+            let secondChildElement = arrayToSort[secondChildElementIndex!]
             
             if secondChildElement > firstChildElement
             {
-                biggestChildElementIndex = secondChildElementIndex
+                biggestChildElementIndex = secondChildElementIndex!
             }
         }
+        
+        var elementIndicesToSelect = [currentElementIndex, firstChildElementIndex]
+        
+        if secondChildElementIndex != nil
+        {
+            elementIndicesToSelect.append(secondChildElementIndex!)
+        }
+        
+        self.diagramView?.selectElementsAtIndices(elementIndicesToSelect)
         
         return biggestChildElementIndex
     }

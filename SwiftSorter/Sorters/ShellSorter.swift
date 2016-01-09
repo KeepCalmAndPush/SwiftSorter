@@ -14,6 +14,7 @@ class ShellSorter: InsertionSorter
     {
         super.init()
         refreshInterval = 0.1
+        suitableElementsCount = 30
         
         algorithmName = "Сортировка Шелла"
     }
