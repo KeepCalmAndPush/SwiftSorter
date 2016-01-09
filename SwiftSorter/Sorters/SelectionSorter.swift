@@ -15,7 +15,7 @@ class SelectionSorter: Sorter
         super.init()
         refreshInterval = 0.2
         
-        algorithmName = "Выбором"
+        algorithmName = "Сортировка выбором"
     }
     
     override func sortArray(inout arrayToSort: [Int])

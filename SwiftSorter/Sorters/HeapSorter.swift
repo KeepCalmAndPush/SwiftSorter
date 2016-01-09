@@ -14,7 +14,7 @@ class HeapSorter: Sorter
     {
         super.init()
         refreshInterval = 0.2
-        animationDuration = 0.2
+//        animationDuration = 0.2
         
         algorithmName = "Сортировка кучей (heap)"
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-let arrayLength = 10
+let arrayLength = 15
 
 extension Array {
     mutating func shuffle() {
@@ -46,7 +46,7 @@ class SortingViewController: UIViewController
             _sorter?.array = self.sourceArray
             _sorter?.diagramView = self.diagramView
 
-            self.title = "???"// _sorter?.algorithmName
+            self.title =  _sorter?.algorithmName//"???"//
         }
     }
     

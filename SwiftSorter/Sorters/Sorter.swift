@@ -11,7 +11,7 @@ import UIKit
 class Sorter: NSObject
 {
     var algorithmName : String = ""
-    var suitableElementsCount : Int = 15
+    var suitableElementsCount : Int = 10
     
     private var _array : [Int]?
 

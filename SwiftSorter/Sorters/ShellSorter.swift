@@ -13,8 +13,8 @@ class ShellSorter: InsertionSorter
     override init()
     {
         super.init()
-        refreshInterval = 0.1
-        suitableElementsCount = 30
+        refreshInterval = 0.2
+        suitableElementsCount = 25
         
         algorithmName = "Сортировка Шелла"
     }
