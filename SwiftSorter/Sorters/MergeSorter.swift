@@ -14,6 +14,7 @@ class MergeSorter: Sorter
     {
         super.init()
         refreshInterval = 0.3
+        suitableElementsCount = 30
         
         algorithmName = "Сортировка слиянием"
     }
