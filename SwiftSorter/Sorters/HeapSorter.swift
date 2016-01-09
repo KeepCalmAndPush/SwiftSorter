@@ -13,7 +13,8 @@ class HeapSorter: Sorter
     override init()
     {
         super.init()
-        refreshInterval = 0.2
+        refreshInterval = 0.15
+        animationDuration = 0.2
         
         algorithmName = "Сортировка кучей (heap)"
     }

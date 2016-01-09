@@ -7,21 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		77485E0D1C3D802F0077EA00 /* ShellSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77485E0C1C3D802F0077EA00 /* ShellSorter.swift */; };
-		779428931C3FFAB700489E66 /* QuickSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779428921C3FFAB700489E66 /* QuickSorter.swift */; };
-		77ACCB731C3BB14B00555750 /* InsertionSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ACCB721C3BB14B00555750 /* InsertionSorter.swift */; };
-		77ACCB761C3BE35B00555750 /* BubbleSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ACCB751C3BE35B00555750 /* BubbleSorter.swift */; };
 		77ACCB7A1C3BFB1700555750 /* SorterPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ACCB791C3BFB1700555750 /* SorterPickerViewController.swift */; };
-		77ACCB7C1C3C210900555750 /* ShakerSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ACCB7B1C3C210900555750 /* ShakerSorter.swift */; };
 		77AEF1161C396F8900009F41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEF1151C396F8900009F41 /* AppDelegate.swift */; };
 		77AEF1181C396F8900009F41 /* SortingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEF1171C396F8900009F41 /* SortingViewController.swift */; };
 		77AEF11D1C396F8900009F41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77AEF11C1C396F8900009F41 /* Assets.xcassets */; };
 		77AEF12B1C396F8900009F41 /* SwiftSorterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEF12A1C396F8900009F41 /* SwiftSorterUITests.swift */; };
 		77AEF1371C39851E00009F41 /* DiagramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEF1361C39851E00009F41 /* DiagramView.swift */; };
-		77BCAD761C3E6112008DCC36 /* HeapSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BCAD751C3E6112008DCC36 /* HeapSorter.swift */; };
-		77C282151C3CF25D008DBD1C /* GnomeSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C282141C3CF25D008DBD1C /* GnomeSorter.swift */; };
-		77D47B8A1C3AEF0E002D4675 /* SelectionSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D47B891C3AEF0E002D4675 /* SelectionSorter.swift */; };
-		77D47B8C1C3AEF1F002D4675 /* Sorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D47B8B1C3AEF1F002D4675 /* Sorter.swift */; };
+		77FDCEE51C41455A00AB570C /* BubbleSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FDCEDB1C41455A00AB570C /* BubbleSorter.swift */; };
+		77FDCEE61C41455A00AB570C /* GnomeSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FDCEDC1C41455A00AB570C /* GnomeSorter.swift */; };
+		77FDCEE71C41455A00AB570C /* HeapSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FDCEDD1C41455A00AB570C /* HeapSorter.swift */; };
+		77FDCEE81C41455A00AB570C /* InsertionSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FDCEDE1C41455A00AB570C /* InsertionSorter.swift */; };
+		77FDCEE91C41455A00AB570C /* MergeSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FDCEDF1C41455A00AB570C /* MergeSorter.swift */; };
+		77FDCEEA1C41455A00AB570C /* QuickSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FDCEE01C41455A00AB570C /* QuickSorter.swift */; };
+		77FDCEEB1C41455A00AB570C /* SelectionSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FDCEE11C41455A00AB570C /* SelectionSorter.swift */; };
+		77FDCEEC1C41455A00AB570C /* ShakerSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FDCEE21C41455A00AB570C /* ShakerSorter.swift */; };
+		77FDCEED1C41455A00AB570C /* ShellSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FDCEE31C41455A00AB570C /* ShellSorter.swift */; };
+		77FDCEEE1C41455A00AB570C /* Sorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FDCEE41C41455A00AB570C /* Sorter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,12 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		77485E0C1C3D802F0077EA00 /* ShellSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShellSorter.swift; sourceTree = "<group>"; };
-		779428921C3FFAB700489E66 /* QuickSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuickSorter.swift; path = Algorithms/QuickSorter.swift; sourceTree = "<group>"; };
-		77ACCB721C3BB14B00555750 /* InsertionSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InsertionSorter.swift; path = Algorithms/InsertionSorter.swift; sourceTree = "<group>"; };
-		77ACCB751C3BE35B00555750 /* BubbleSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BubbleSorter.swift; path = Algorithms/BubbleSorter.swift; sourceTree = "<group>"; };
 		77ACCB791C3BFB1700555750 /* SorterPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SorterPickerViewController.swift; sourceTree = "<group>"; };
-		77ACCB7B1C3C210900555750 /* ShakerSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShakerSorter.swift; path = Algorithms/ShakerSorter.swift; sourceTree = "<group>"; };
 		77AEF1121C396F8900009F41 /* SwiftSorter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftSorter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77AEF1151C396F8900009F41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77AEF1171C396F8900009F41 /* SortingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingViewController.swift; sourceTree = "<group>"; };
@@ -50,10 +46,16 @@
 		77AEF12A1C396F8900009F41 /* SwiftSorterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSorterUITests.swift; sourceTree = "<group>"; };
 		77AEF12C1C396F8900009F41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77AEF1361C39851E00009F41 /* DiagramView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagramView.swift; sourceTree = "<group>"; };
-		77BCAD751C3E6112008DCC36 /* HeapSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeapSorter.swift; path = Algorithms/HeapSorter.swift; sourceTree = "<group>"; };
-		77C282141C3CF25D008DBD1C /* GnomeSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GnomeSorter.swift; path = Algorithms/GnomeSorter.swift; sourceTree = "<group>"; };
-		77D47B891C3AEF0E002D4675 /* SelectionSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectionSorter.swift; path = Algorithms/SelectionSorter.swift; sourceTree = "<group>"; };
-		77D47B8B1C3AEF1F002D4675 /* Sorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sorter.swift; sourceTree = "<group>"; };
+		77FDCEDB1C41455A00AB570C /* BubbleSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleSorter.swift; sourceTree = "<group>"; };
+		77FDCEDC1C41455A00AB570C /* GnomeSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GnomeSorter.swift; sourceTree = "<group>"; };
+		77FDCEDD1C41455A00AB570C /* HeapSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeapSorter.swift; sourceTree = "<group>"; };
+		77FDCEDE1C41455A00AB570C /* InsertionSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsertionSorter.swift; sourceTree = "<group>"; };
+		77FDCEDF1C41455A00AB570C /* MergeSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MergeSorter.swift; sourceTree = "<group>"; };
+		77FDCEE01C41455A00AB570C /* QuickSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickSorter.swift; sourceTree = "<group>"; };
+		77FDCEE11C41455A00AB570C /* SelectionSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionSorter.swift; sourceTree = "<group>"; };
+		77FDCEE21C41455A00AB570C /* ShakerSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakerSorter.swift; sourceTree = "<group>"; };
+		77FDCEE31C41455A00AB570C /* ShellSorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShellSorter.swift; sourceTree = "<group>"; };
+		77FDCEE41C41455A00AB570C /* Sorter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sorter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +118,7 @@
 			children = (
 				77ACCB771C3BE73B00555750 /* VC */,
 				77AEF1351C39850200009F41 /* Views */,
-				77D47B881C3AEE87002D4675 /* Sorters */,
+				77FDCEDA1C41455A00AB570C /* Sorters */,
 				77ACCB781C3BE75100555750 /* Supporting files */,
 			);
 			path = SwiftSorter;
@@ -139,20 +141,21 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		77D47B881C3AEE87002D4675 /* Sorters */ = {
+		77FDCEDA1C41455A00AB570C /* Sorters */ = {
 			isa = PBXGroup;
 			children = (
-				77D47B8B1C3AEF1F002D4675 /* Sorter.swift */,
-				77D47B891C3AEF0E002D4675 /* SelectionSorter.swift */,
-				77ACCB721C3BB14B00555750 /* InsertionSorter.swift */,
-				77485E0C1C3D802F0077EA00 /* ShellSorter.swift */,
-				77ACCB751C3BE35B00555750 /* BubbleSorter.swift */,
-				77ACCB7B1C3C210900555750 /* ShakerSorter.swift */,
-				77C282141C3CF25D008DBD1C /* GnomeSorter.swift */,
-				77BCAD751C3E6112008DCC36 /* HeapSorter.swift */,
-				779428921C3FFAB700489E66 /* QuickSorter.swift */,
+				77FDCEE41C41455A00AB570C /* Sorter.swift */,
+				77FDCEDB1C41455A00AB570C /* BubbleSorter.swift */,
+				77FDCEDC1C41455A00AB570C /* GnomeSorter.swift */,
+				77FDCEDE1C41455A00AB570C /* InsertionSorter.swift */,
+				77FDCEE11C41455A00AB570C /* SelectionSorter.swift */,
+				77FDCEE21C41455A00AB570C /* ShakerSorter.swift */,
+				77FDCEE31C41455A00AB570C /* ShellSorter.swift */,
+				77FDCEDD1C41455A00AB570C /* HeapSorter.swift */,
+				77FDCEE01C41455A00AB570C /* QuickSorter.swift */,
+				77FDCEDF1C41455A00AB570C /* MergeSorter.swift */,
 			);
-			name = Sorters;
+			path = Sorters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,19 +256,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77FDCEE51C41455A00AB570C /* BubbleSorter.swift in Sources */,
 				77AEF1371C39851E00009F41 /* DiagramView.swift in Sources */,
+				77FDCEEE1C41455A00AB570C /* Sorter.swift in Sources */,
+				77FDCEE81C41455A00AB570C /* InsertionSorter.swift in Sources */,
 				77ACCB7A1C3BFB1700555750 /* SorterPickerViewController.swift in Sources */,
-				77D47B8C1C3AEF1F002D4675 /* Sorter.swift in Sources */,
-				779428931C3FFAB700489E66 /* QuickSorter.swift in Sources */,
-				77D47B8A1C3AEF0E002D4675 /* SelectionSorter.swift in Sources */,
-				77485E0D1C3D802F0077EA00 /* ShellSorter.swift in Sources */,
-				77ACCB7C1C3C210900555750 /* ShakerSorter.swift in Sources */,
-				77C282151C3CF25D008DBD1C /* GnomeSorter.swift in Sources */,
+				77FDCEE71C41455A00AB570C /* HeapSorter.swift in Sources */,
+				77FDCEE91C41455A00AB570C /* MergeSorter.swift in Sources */,
+				77FDCEED1C41455A00AB570C /* ShellSorter.swift in Sources */,
+				77FDCEEA1C41455A00AB570C /* QuickSorter.swift in Sources */,
 				77AEF1181C396F8900009F41 /* SortingViewController.swift in Sources */,
-				77BCAD761C3E6112008DCC36 /* HeapSorter.swift in Sources */,
-				77ACCB761C3BE35B00555750 /* BubbleSorter.swift in Sources */,
-				77ACCB731C3BB14B00555750 /* InsertionSorter.swift in Sources */,
 				77AEF1161C396F8900009F41 /* AppDelegate.swift in Sources */,
+				77FDCEE61C41455A00AB570C /* GnomeSorter.swift in Sources */,
+				77FDCEEC1C41455A00AB570C /* ShakerSorter.swift in Sources */,
+				77FDCEEB1C41455A00AB570C /* SelectionSorter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

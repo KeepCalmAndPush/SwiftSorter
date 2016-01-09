@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         let pickerVC  = SorterPickerViewController()
-        pickerVC.sorters = [SelectionSorter(), InsertionSorter(), BubbleSorter(), ShakerSorter(), GnomeSorter(), ShellSorter(), HeapSorter(), QuickSorter()]
+        pickerVC.sorters = [SelectionSorter(), InsertionSorter(), BubbleSorter(), ShakerSorter(), GnomeSorter(), ShellSorter(), HeapSorter(), QuickSorter(), MergeSorter()]
         
         let navigationVC = UINavigationController(rootViewController: pickerVC)
         navigationVC.navigationBar.translucent = false
